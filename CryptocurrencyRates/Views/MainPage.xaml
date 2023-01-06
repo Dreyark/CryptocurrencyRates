@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CryptocurrencyRates.Views.MainPage"
+             xmlns:mvvm="clr-namespace:MvvmHelpers;assembly=MvvmHelpers"
+             xmlns:viewmodel="clr-namespace:CryptocurrencyRates.ViewModels"
+             x:DataType="viewmodel:CryptocurrencyViewModel">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding AddCommand}"/>
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <StackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+            <Button
+                x:Name="AddCrypto"
+                Text="Add Cryptocurrency"
+                HorizontalOptions="EndAndExpand" />
+
+            <Label Text="Crypto List" FontSize="28"/>
+            
+        </StackLayout>
+        
+    </ScrollView>
+
+</ContentPage>
