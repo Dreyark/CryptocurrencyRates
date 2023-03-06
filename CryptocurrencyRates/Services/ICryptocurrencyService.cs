@@ -10,9 +10,10 @@ namespace CryptocurrencyRates.Services
 {
     public interface ICryptocurrencyService
     {
-        Task<IEnumerable<Cryptocurrency>> GetCrypto();
+        List<Cryptocurrency> GetCrypto();
         Task<Cryptocurrency> GetCrypto(int id);
         Task AddCrypto(Cryptocurrency cryptocurrency);
         Task RemoveCrypto(int id);
+        Task RemoveAllCryptocurrency();
     }
 }

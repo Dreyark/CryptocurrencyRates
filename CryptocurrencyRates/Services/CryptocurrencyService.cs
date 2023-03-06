@@ -6,6 +6,7 @@ using SQLite;
 using System.Threading.Tasks;
 using CryptocurrencyRates.Models;
 using System.ComponentModel;
+using CryptocurrencyRates.Services;
 
 namespace CryptocurrencyRates.Services
 {
@@ -13,7 +14,7 @@ namespace CryptocurrencyRates.Services
     {
 
 
-        SQLiteAsyncConnection db;
+        SQLiteConnection db;
         async Task Init()
         {
             if (db != null)
@@ -21,15 +22,15 @@ namespace CryptocurrencyRates.Services
 
             var databasePath = Path.Combine(FileSystem.AppDataDirectory, "MyData.db");
 
-            db = new SQLiteAsyncConnection(databasePath);
-
-            await db.CreateTableAsync<Cryptocurrency>();
+            db = new SQLiteConnection(databasePath);
+            
+            db.CreateTable<Cryptocurrency>();
         }
 
-        public async Task<IEnumerable<Cryptocurrency>> GetCrypto()
+        public List<Cryptocurrency> GetCrypto()
         {
-            await Init();
-            var CryptoCurrencies = await db.Table<Cryptocurrency>().ToListAsync();
+            Init();
+            var CryptoCurrencies = db.Table<Cryptocurrency>().ToList();
             return CryptoCurrencies;
         }
 
@@ -37,8 +38,8 @@ namespace CryptocurrencyRates.Services
         {
             await Init();
 
-            var cryptocurrency = await db.Table<Cryptocurrency>()
-                .FirstOrDefaultAsync(c => c.Id == id);
+            var cryptocurrency =  db.Table<Cryptocurrency>()
+                .FirstOrDefault(c => c.Id == id);
 
             return cryptocurrency;
         }
@@ -47,19 +48,19 @@ namespace CryptocurrencyRates.Services
         {
             await Init();
 
-            var crypto = new Cryptocurrency
-            {
-                Name = "nazwa",
-                Description = "opis"
-            };
-
-            var id = await db.InsertAsync(crypto);
+            var id =  db.Insert(cryptocurrency);
         }
 
         public async Task RemoveCrypto(int id)
         {
             await Init();
-            await db.DeleteAsync<Cryptocurrency>(id);
+            db.Delete<Cryptocurrency>(id);
+        }
+        public async Task RemoveAllCryptocurrency()
+        {
+            await Init();
+            db.DropTable<Cryptocurrency>();
+            db.CreateTable<Cryptocurrency>();
         }
     }
 }

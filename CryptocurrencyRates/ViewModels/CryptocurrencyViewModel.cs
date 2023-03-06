@@ -1,8 +1,7 @@
 ﻿using CryptocurrencyRates.Models;
 using CryptocurrencyRates.Services;
-using MvvmHelpers;
-using MvvmHelpers.Commands;
-using Command = MvvmHelpers.Commands.Command;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CryptocurrencyRates.Views;
 using System;
 using System.Collections.Generic;
@@ -10,58 +9,54 @@ using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.Collections;
 
 namespace CryptocurrencyRates.ViewModels
 {
-    public class CryptocurrencyViewModel : ViewModelBase
+    public partial class CryptocurrencyViewModel : ObservableObject
     {
-        public ObservableRangeCollection<Cryptocurrency> Cryptocurrency { get; set; }   
-        public AsyncCommand RefreshCommand { get; }
-        public AsyncCommand AddCommand { get; }
-        public AsyncCommand<Cryptocurrency> RemoveCommand { get; }
-
+        public ObservableCollection<Cryptocurrency> Cryptocurrencies { get; set; } = new ObservableCollection<Cryptocurrency>();
+        CoinListUpdater coinListUpdater = new CoinListUpdater();
         ICryptocurrencyService cryptocurrencyService;
 
-        public CryptocurrencyViewModel()
+        public CryptocurrencyViewModel(ICryptocurrencyService cryptocurrencyService)
         {
-            Title = "Cryptocurrency";
-            Cryptocurrency = new ObservableRangeCollection<Cryptocurrency>();
-
-            RefreshCommand = new AsyncCommand(Refresh);
-            AddCommand = new AsyncCommand(Add);
-            RemoveCommand = new AsyncCommand<Cryptocurrency>(Remove);
-
-            cryptocurrencyService = DependencyService.Get<ICryptocurrencyService>();
+            this.cryptocurrencyService = cryptocurrencyService;
         }
 
+        [RelayCommand]
         async Task Refresh()
         {
-            IsBusy = true;
-            await Task.Delay(500);
-            Cryptocurrency.Clear();
-            var cryptocurrency = await cryptocurrencyService.GetCrypto();
-            Cryptocurrency.AddRange(cryptocurrency);
-            IsBusy = false;
+            var cryptocurrency = cryptocurrencyService.GetCrypto();
+            if (cryptocurrency.Count() != Cryptocurrencies.Count())
+            {
+                Cryptocurrencies.Clear();
+                foreach (Cryptocurrency crypto in cryptocurrency)
+                {
+                    Cryptocurrencies.Add(crypto);
+                }
+            }
         }
 
+        [RelayCommand]
         async Task Add()
         {
-            //Cryptocurrency crypto = new Cryptocurrency();
-            //var name = await App.Current.MainPage.DisplayPromptAsync("Name", "Name");
-            //await cryptocurrencyService.AddCrypto(crypto);
-            //await Refresh();
-
-            //var route = $"{nameof(AddCryptocurrencyPage)}?Name=Motz";
-            //await Shell.Current.GoToAsync(AddCryptocurrencyPage);
-            // var page =
-            // await Navigation.PushAsync(new AddCryptocurrencyPage(), true);
-            await Shell.Current.GoToAsync($"{nameof(AddCryptocurrencyPage)}");
+            await Shell.Current.GoToAsync($"{nameof(AddOwnedCryptocurrencyPage)}");
         }
 
         async Task Remove(Cryptocurrency cryptocurrency)
         {
             await cryptocurrencyService.RemoveCrypto(cryptocurrency.Id);
             await Refresh();
+        }
+
+        public Cryptocurrency selectedItem { get; set; }
+        [RelayCommand]
+        async Task CryptoSelected()
+        {
+            await Shell.Current.GoToAsync($"{nameof(CryptocurrencyPage)}");
+            //await AppShell.Current.DisplayAlert("Error", selectedItem.Alias, "OK");
         }
     }
 }

@@ -49,15 +49,30 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Maui" Version="5.0.0" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
-		<PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
 		<PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\AddCryptocurrencyPage.xaml">
+	  <MauiXaml Update="Views\AddOwnedCryptocurrencyPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\CryptocurrencyPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Resources\CoinIcon\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Views\AddOwnedCryptocurrencyPage.xaml.cs">
+	    <DependentUpon>AddOwnedCryptocurrencyPage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 </Project>

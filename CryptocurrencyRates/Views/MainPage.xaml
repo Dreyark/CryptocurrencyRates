@@ -1,28 +1,52 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="CryptocurrencyRates.Views.MainPage"
-             xmlns:mvvm="clr-namespace:MvvmHelpers;assembly=MvvmHelpers"
+             xmlns:model="clr-namespace:CryptocurrencyRates.Models"
              xmlns:viewmodel="clr-namespace:CryptocurrencyRates.ViewModels"
              x:DataType="viewmodel:CryptocurrencyViewModel">
-
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:SelectedItemEventArgsConverter x:Key="SelectedItemEventArgsConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Command="{Binding AddCommand}"/>
     </ContentPage.ToolbarItems>
-    <ScrollView>
-        <StackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
-            <Button
-                x:Name="AddCrypto"
-                Text="Add Cryptocurrency"
-                HorizontalOptions="EndAndExpand" />
-
-            <Label Text="Crypto List" FontSize="28"/>
-            
-        </StackLayout>
-        
-    </ScrollView>
+    <ListView ItemsSource="{Binding Cryptocurrencies}" SelectedItem="{Binding selectedItem}">
+        <ListView.Behaviors>
+            <toolkit:EventToCommandBehavior
+                EventName="ItemSelected"
+                Command="{Binding CryptoSelectedCommand}" />
+        </ListView.Behaviors>
+        <ListView.RowHeight>
+            <OnIdiom x:TypeArguments="x:Int32" Phone="65" Tablet="70" Desktop="80" />
+        </ListView.RowHeight>
+        <ListView.ItemTemplate>
+            <DataTemplate x:DataType="model:Cryptocurrency">
+                <ViewCell>
+                    <ViewCell.ContextActions>
+                    </ViewCell.ContextActions>
+                    <Grid>
+                        <Frame>
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="{Binding imgSRC}" HeightRequest="55" WidthRequest="55" Margin="10,5,10,5" VerticalOptions="CenterAndExpand" HorizontalOptions="Center"></Image>
+                                <Label
+                                    Text="{Binding Id}" Margin="5,5,5,5" VerticalOptions="CenterAndExpand" HorizontalOptions="Center"/>
+                                <Label
+                                    Text="{Binding Alias}" Margin="5,5,5,5" FontAttributes="Bold" VerticalOptions="CenterAndExpand" HorizontalOptions="Center"/>
+                                <Label
+                                    Text="{Binding Name}" Margin="5,5,5,5"  VerticalOptions="CenterAndExpand" HorizontalOptions="Center"/>
+                                <Label
+                                    Text="{Binding CurrentRateUsd}" Margin="5,5,5,5"  VerticalOptions="CenterAndExpand" HorizontalOptions="Center"/>
+                            </StackLayout>
+                        </Frame>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+    
 
 </ContentPage>

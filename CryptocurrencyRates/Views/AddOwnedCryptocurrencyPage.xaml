@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:CryptocurrencyRates.ViewModels"
+             x:Class="CryptocurrencyRates.Views.AddOwnedCryptocurrencyPage"
+             x:DataType="viewmodel:AddOwnedCryptocurrencyViewModel"
+             Title="Strona">
+    <VerticalStackLayout>
+        <Label Text="Name" />
+        <Entry Text="{Binding Name}" />
+        <Label Text="Description" />
+        <Entry Text="{Binding Amount}" />
+        <Label Text="Alias" />
+        <Entry Text="{Binding Alias}" />
+        <Button Text="Save" Command="{Binding SaveCommand}" />
+
+    </VerticalStackLayout>
+</ContentPage>

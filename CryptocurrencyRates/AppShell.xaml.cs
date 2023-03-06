@@ -8,6 +8,7 @@ public partial class AppShell : Shell
 	{
 		InitializeComponent();
 
-		Routing.RegisterRoute(nameof(AddCryptocurrencyPage), typeof(AddCryptocurrencyPage));
-	}
+		Routing.RegisterRoute(nameof(AddOwnedCryptocurrencyPage), typeof(AddOwnedCryptocurrencyPage));
+        Routing.RegisterRoute(nameof(CryptocurrencyPage), typeof(CryptocurrencyPage));
+    }
 }
