@@ -3,6 +3,7 @@ using CryptocurrencyRates.ViewModels;
 using CryptocurrencyRates.Views;
 using Microsoft.Extensions.Logging;
 using CommunityToolkit.Maui;
+using SkiaSharp.Views.Maui.Controls.Hosting;
 
 namespace CryptocurrencyRates;
 
@@ -13,6 +14,7 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
+            .UseSkiaSharp(true)
             .UseMauiCommunityToolkit()
             .ConfigureFonts(fonts =>
 			{

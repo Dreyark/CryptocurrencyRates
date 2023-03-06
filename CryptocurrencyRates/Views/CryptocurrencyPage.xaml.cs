@@ -1,4 +1,6 @@
 using CryptocurrencyRates.ViewModels;
+using LiveChartsCore;
+using LiveChartsCore.SkiaSharpView;
 
 namespace CryptocurrencyRates.Views;
 
