@@ -11,6 +11,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Collections;
+using LiveChartsCore;
+using LiveChartsCore.Defaults;
+using LiveChartsCore.SkiaSharpView;
 
 namespace CryptocurrencyRates.ViewModels
 {
@@ -58,5 +61,19 @@ namespace CryptocurrencyRates.ViewModels
             await Shell.Current.GoToAsync($"{nameof(CryptocurrencyPage)}");
             //await AppShell.Current.DisplayAlert("Error", selectedItem.Alias, "OK");
         }
+
+        public ISeries[] Series { get; set; }
+            = new ISeries[]
+            {
+                new LineSeries<int>
+                {
+                    Values = CoinListUpdater.GetCoinHistory("Bitcoin", "d1")
+                },
+                new ColumnSeries<double>
+                {
+                    Values = new double[] { 2, 5, 4, -2, 4, -3, 5 }
+                }
+            };
+
     }
 }

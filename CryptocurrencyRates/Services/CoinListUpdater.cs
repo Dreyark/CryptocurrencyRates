@@ -74,5 +74,30 @@ namespace CryptocurrencyRates.Services
                 }
             };
         }
+
+        public class CoinDataHistory
+        {
+            public string priceUsd { get; set; }
+            public object time { get; set; }
+            public DateTime date { get; set; }
+        }
+
+        public class CoinHistoryRoot
+        {
+            public List<CoinDataHistory> data { get; set; }
+            public long timestamp { get; set; }
+        }
+
+        public static List<CoinDataHistory> GetCoinHistory(string coin, string interval)
+        {
+            CoinHistoryRoot coinHistoryRoot = new CoinHistoryRoot();
+            using (var webClient = new WebClient())
+            {
+                var jsonString = webClient.DownloadString("https://api.coincap.io/v2/assets/"+coin+"/history?interval="+interval);
+                var valueSet = JsonConvert.DeserializeObject<CoinHistoryRoot>(jsonString);
+                coinHistoryRoot = valueSet;
+            }
+            return coinHistoryRoot.data;
+        }
     }
 }
