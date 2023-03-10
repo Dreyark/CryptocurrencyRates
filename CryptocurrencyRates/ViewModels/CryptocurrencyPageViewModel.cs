@@ -16,7 +16,6 @@ namespace CryptocurrencyRates.ViewModels
 {
     public partial class CryptocurrencyPageViewModel : ObservableObject
     {
-        public event PropertyChangedEventHandler PropertyChanged;
 
         ISharedDataInterface sharedDataInterface;
         public Cryptocurrency crypto { get; set; }
