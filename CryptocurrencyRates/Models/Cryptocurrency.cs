@@ -11,6 +11,7 @@ namespace CryptocurrencyRates.Models
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
+        public string coinId { get; set; }
         public string Name { get; set; }
         public string Alias { get; set; }
         public string imgSRC { get; set; }

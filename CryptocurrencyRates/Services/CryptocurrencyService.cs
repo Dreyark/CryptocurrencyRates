@@ -23,7 +23,7 @@ namespace CryptocurrencyRates.Services
             var databasePath = Path.Combine(FileSystem.AppDataDirectory, "MyData.db");
 
             db = new SQLiteConnection(databasePath);
-            
+
             db.CreateTable<Cryptocurrency>();
         }
 
@@ -38,7 +38,7 @@ namespace CryptocurrencyRates.Services
         {
             await Init();
 
-            var cryptocurrency =  db.Table<Cryptocurrency>()
+            var cryptocurrency = db.Table<Cryptocurrency>()
                 .FirstOrDefault(c => c.Id == id);
 
             return cryptocurrency;
@@ -48,7 +48,7 @@ namespace CryptocurrencyRates.Services
         {
             await Init();
 
-            var id =  db.Insert(cryptocurrency);
+            var id = db.Insert(cryptocurrency);
         }
 
         public async Task RemoveCrypto(int id)
@@ -62,5 +62,6 @@ namespace CryptocurrencyRates.Services
             db.DropTable<Cryptocurrency>();
             db.CreateTable<Cryptocurrency>();
         }
+
     }
 }

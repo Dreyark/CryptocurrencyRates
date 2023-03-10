@@ -3,18 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CryptocurrencyRates.Views.CryptocurrencyPage"
              xmlns:viewmodel="clr-namespace:CryptocurrencyRates.ViewModels"
-             x:DataType="viewmodel:CryptocurrencyViewModel"
+             x:DataType="viewmodel:CryptocurrencyPageViewModel"
              xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
              Title="CryptocurrencyPage">
     <VerticalStackLayout>
         <Label 
-            Text="{Binding selectedItem.Alias}"
+            x:Name="CoinLabel"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
     </VerticalStackLayout>
     <Grid>
         <lvc:CartesianChart
-                Series="{Binding Series}">
-        </lvc:CartesianChart>
+            x:Name="CoinChart"/>
     </Grid>
 </ContentPage>

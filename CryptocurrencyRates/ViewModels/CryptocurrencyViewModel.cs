@@ -22,10 +22,12 @@ namespace CryptocurrencyRates.ViewModels
         public ObservableCollection<Cryptocurrency> Cryptocurrencies { get; set; } = new ObservableCollection<Cryptocurrency>();
         CoinListUpdater coinListUpdater = new CoinListUpdater();
         ICryptocurrencyService cryptocurrencyService;
+        ISharedDataInterface sharedDataInterface;
 
-        public CryptocurrencyViewModel(ICryptocurrencyService cryptocurrencyService)
+        public CryptocurrencyViewModel(ICryptocurrencyService cryptocurrencyService, ISharedDataInterface sharedDataInterface)
         {
             this.cryptocurrencyService = cryptocurrencyService;
+            this.sharedDataInterface = sharedDataInterface;
         }
 
         [RelayCommand]
@@ -58,22 +60,9 @@ namespace CryptocurrencyRates.ViewModels
         [RelayCommand]
         async Task CryptoSelected()
         {
+            sharedDataInterface.SetSharedCrypto(selectedItem);
             await Shell.Current.GoToAsync($"{nameof(CryptocurrencyPage)}");
-            //await AppShell.Current.DisplayAlert("Error", selectedItem.Alias, "OK");
         }
-
-        public ISeries[] Series { get; set; }
-            = new ISeries[]
-            {
-                new LineSeries<int>
-                {
-                    Values = CoinListUpdater.GetCoinHistory("Bitcoin", "d1")
-                },
-                new ColumnSeries<double>
-                {
-                    Values = new double[] { 2, 5, 4, -2, 4, -3, 5 }
-                }
-            };
 
     }
 }

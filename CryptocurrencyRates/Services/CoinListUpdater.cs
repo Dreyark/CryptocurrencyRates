@@ -11,6 +11,7 @@ using CryptocurrencyRates.Models;
 using CryptocurrencyRates.Services;
 using System.Threading.Tasks;
 using System.Text.Json.Serialization;
+using System.ComponentModel;
 
 namespace CryptocurrencyRates.Services
 {
@@ -60,6 +61,7 @@ namespace CryptocurrencyRates.Services
                     //}
                     Cryptocurrency crypto = new Cryptocurrency()
                     {
+                        coinId = coin.id,
                         Name = coin.name,
                         Alias = coin.symbol,
                         imgSRC = @"C:\Users\Dreyark\source\repos\Dreyark\CryptocurrencyRates\CryptocurrencyRates\Resources\CoinIcon\" + coin.symbol.ToLower() + ".png",
@@ -73,31 +75,6 @@ namespace CryptocurrencyRates.Services
                     cryptocurrencyService.AddCrypto(crypto);
                 }
             };
-        }
-
-        public class CoinDataHistory
-        {
-            public string priceUsd { get; set; }
-            public object time { get; set; }
-            public DateTime date { get; set; }
-        }
-
-        public class CoinHistoryRoot
-        {
-            public List<CoinDataHistory> data { get; set; }
-            public long timestamp { get; set; }
-        }
-
-        public static List<CoinDataHistory> GetCoinHistory(string coin, string interval)
-        {
-            CoinHistoryRoot coinHistoryRoot = new CoinHistoryRoot();
-            using (var webClient = new WebClient())
-            {
-                var jsonString = webClient.DownloadString("https://api.coincap.io/v2/assets/"+coin+"/history?interval="+interval);
-                var valueSet = JsonConvert.DeserializeObject<CoinHistoryRoot>(jsonString);
-                coinHistoryRoot = valueSet;
-            }
-            return coinHistoryRoot.data;
         }
     }
 }
