@@ -10,10 +10,35 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Command="{Binding AddCommand}"/>
     </ContentPage.ToolbarItems>
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <Grid>
+        <ListView x:Name="OwnCryptoList" >
+        <!--SelectedItem="{Binding selectedItem}"-->
+        <!--<ListView.Behaviors>
+            <toolkit:EventToCommandBehavior
+                EventName="ItemSelected"
+                Command="{Binding CryptoSelectedCommand}" />
+        </ListView.Behaviors>-->
+        <ListView.RowHeight>
+            <OnIdiom x:TypeArguments="x:Int32" Phone="65" Tablet="70" Desktop="80" />
+        </ListView.RowHeight>
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <ViewCell.ContextActions>
+                    </ViewCell.ContextActions>
+                    <Grid>
+                        <Frame>
+                            <StackLayout Orientation="Horizontal">
+                                <!--<Label
+                                    x:Name="IdLabel" Margin="5,5,5,5" VerticalOptions="CenterAndExpand" HorizontalOptions="Center"/>-->
+
+                                    <Label Text="{DynamicResource Name}"/>
+                            </StackLayout>
+                        </Frame>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+    </Grid>
 </ContentPage>

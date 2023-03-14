@@ -4,6 +4,7 @@ using CryptocurrencyRates.Models;
 using CryptocurrencyRates.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,30 +13,30 @@ namespace CryptocurrencyRates.ViewModels
 {
     public partial class AddOwnedCryptocurrencyViewModel : ObservableObject
     {
-        string name, alias;
+        int id, coinId;
         double amount;
-        public string Name { get => name; set => SetProperty(ref name, value); }
+        public int Id { get => id; set => SetProperty(ref id, value); }
         public double Amount { get => amount; set => SetProperty(ref amount, value); }
-        public string Alias { get => alias; set => SetProperty(ref alias, value); }
+        public int CoinId { get => coinId; set => SetProperty(ref coinId, value); }
 
-        IOwnedCryptocurrencyService ownedcryptocurrencyService;
-        public AddOwnedCryptocurrencyViewModel(IOwnedCryptocurrencyService OwnedcryptocurrencyService)
+        IOwnedCryptocurrencyService ownedCryptocurrencyService;
+        ICryptocurrencyService cryptocurrencyService;
+        public List<Cryptocurrency> Cryptocurrencies { get; set; } = new List<Cryptocurrency>();
+        public AddOwnedCryptocurrencyViewModel(IOwnedCryptocurrencyService ownedCryptocurrencyService, ICryptocurrencyService cryptocurrencyService)
         {
-            this.ownedcryptocurrencyService = OwnedcryptocurrencyService;
+            this.ownedCryptocurrencyService = ownedCryptocurrencyService;
+            this.cryptocurrencyService = cryptocurrencyService;
+            Cryptocurrencies = cryptocurrencyService.GetCrypto();
         }
 
         [RelayCommand]
         async Task Save()
         {
-            if (string.IsNullOrWhiteSpace(name))
-            {
-                return;
-            }
-            OwnedCryptocurrency crypto = new OwnedCryptocurrency();
-            //crypto.Name = name;
-            //crypto.Amount = amount;
-            //crypto.Alias = alias;
-            await ownedcryptocurrencyService.AddOwnCrypto(crypto);
+            OwnedCryptocurrency ownCrypto = new OwnedCryptocurrency();
+            ownCrypto.Id = id;
+            ownCrypto.Amount = amount;
+            ownCrypto.CoinId = coinId;
+            await ownedCryptocurrencyService.AddOwnCrypto(ownCrypto);
 
             await Shell.Current.GoToAsync("..");
         }

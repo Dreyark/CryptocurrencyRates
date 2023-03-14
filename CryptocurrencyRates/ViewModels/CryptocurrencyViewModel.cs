@@ -44,18 +44,6 @@ namespace CryptocurrencyRates.ViewModels
             }
         }
 
-        [RelayCommand]
-        async Task Add()
-        {
-            await Shell.Current.GoToAsync($"{nameof(AddOwnedCryptocurrencyPage)}");
-        }
-
-        async Task Remove(Cryptocurrency cryptocurrency)
-        {
-            await cryptocurrencyService.RemoveCrypto(cryptocurrency.Id);
-            await Refresh();
-        }
-
         public Cryptocurrency selectedItem { get; set; }
         [RelayCommand]
         async Task CryptoSelected()
@@ -64,14 +52,5 @@ namespace CryptocurrencyRates.ViewModels
             await Shell.Current.GoToAsync($"{nameof(CryptocurrencyPage)}");
             //await AccelerometerChangedEventArgs.
         }
-
-        [RelayCommand]
-        async Task OwnCryptoPage()
-        {
-            //await Shell.Current.GoToAsync($"{nameof(OwnedCryptocurrencyListPage)}"); 
-            //await Shell.
-            //await Navigation.PopAsync();
-        }
-
     }
 }
