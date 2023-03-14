@@ -12,41 +12,59 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Command="{Binding AddCommand}"/>
+        <!--<ToolbarItem Text="Add" Command="{Binding AddCommand}"/>-->
     </ContentPage.ToolbarItems>
-    <ListView ItemsSource="{Binding Cryptocurrencies}" SelectedItem="{Binding selectedItem}">
-        <ListView.Behaviors>
-            <toolkit:EventToCommandBehavior
+    <Grid
+        ColumnDefinitions="*,*"
+        ColumnSpacing="5"
+        RowDefinitions="*,Auto"
+        RowSpacing="0">
+        <ListView ItemsSource="{Binding Cryptocurrencies}" SelectedItem="{Binding selectedItem}">
+            <ListView.Behaviors>
+                <toolkit:EventToCommandBehavior
                 EventName="ItemSelected"
                 Command="{Binding CryptoSelectedCommand}" />
-        </ListView.Behaviors>
-        <ListView.RowHeight>
-            <OnIdiom x:TypeArguments="x:Int32" Phone="65" Tablet="70" Desktop="80" />
-        </ListView.RowHeight>
-        <ListView.ItemTemplate>
-            <DataTemplate x:DataType="model:Cryptocurrency">
-                <ViewCell>
-                    <ViewCell.ContextActions>
-                    </ViewCell.ContextActions>
-                    <Grid>
-                        <Frame>
-                            <StackLayout Orientation="Horizontal">
-                                <Image Source="{Binding imgSRC}" HeightRequest="55" WidthRequest="55" Margin="10,5,10,5" VerticalOptions="CenterAndExpand" HorizontalOptions="Center"></Image>
-                                <Label
+            </ListView.Behaviors>
+            <ListView.RowHeight>
+                <OnIdiom x:TypeArguments="x:Int32" Phone="65" Tablet="70" Desktop="80" />
+            </ListView.RowHeight>
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:Cryptocurrency">
+                    <ViewCell>
+                        <ViewCell.ContextActions>
+                        </ViewCell.ContextActions>
+                        <Grid>
+                            <Frame>
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="{Binding imgSRC}" HeightRequest="55" WidthRequest="55" Margin="10,5,10,5" VerticalOptions="CenterAndExpand" HorizontalOptions="Center"></Image>
+                                    <Label
                                     Text="{Binding Id}" Margin="5,5,5,5" VerticalOptions="CenterAndExpand" HorizontalOptions="Center"/>
-                                <Label
+                                    <Label
                                     Text="{Binding Alias}" Margin="5,5,5,5" FontAttributes="Bold" VerticalOptions="CenterAndExpand" HorizontalOptions="Center"/>
-                                <Label
+                                    <Label
                                     Text="{Binding Name}" Margin="5,5,5,5"  VerticalOptions="CenterAndExpand" HorizontalOptions="Center"/>
-                                <Label
+                                    <Label
                                     Text="{Binding CurrentRateUsd}" Margin="5,5,5,5"  VerticalOptions="CenterAndExpand" HorizontalOptions="Center"/>
-                            </StackLayout>
-                        </Frame>
-                    </Grid>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
-    
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 
+        <!--<Button
+            Grid.Row="1"
+            Grid.Column="0"
+            Margin="8"
+            Command="{Binding OwnCryptoPageCommand}"
+            Text="Własne" />
+        <Button
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="8"
+            Text="Find Closest" />-->
+
+    </Grid>
 </ContentPage>
+

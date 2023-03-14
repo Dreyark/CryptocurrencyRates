@@ -11,6 +11,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LiveChartsCore.Defaults;
 
 namespace CryptocurrencyRates.ViewModels
 {
@@ -20,6 +21,9 @@ namespace CryptocurrencyRates.ViewModels
         ISharedDataInterface sharedDataInterface;
         public Cryptocurrency crypto { get; set; }
         public ISeries[] series { get; set; }
+
+        //public ObservableCollection<Decimal> priceUSDList;
+        //public ObservableCollection<DateTime> timeList;
         public CryptocurrencyPageViewModel(ISharedDataInterface sharedDataInterface)
         {
             this.sharedDataInterface = sharedDataInterface;
@@ -31,19 +35,22 @@ namespace CryptocurrencyRates.ViewModels
             crypto = sharedDataInterface.GetSharedCrypto();
             CoinHistoryValues();
         }
-
-        public static ObservableCollection<Decimal> priceUSDList;
-        public static ObservableCollection<DateTime> timeList;
-
         public void CoinHistoryValues()
         {
-            CoinHistory coinHistory = new CoinHistory(crypto.coinId, "d1");
-            priceUSDList = coinHistory.priceUSDList;
-            timeList = coinHistory.timeList;
+            string StartDateTime = "1333500000000";
+            string EndDateTime = "1800000000000";
+            CoinHistory coinHistory = new CoinHistory(crypto.coinId, "d1", StartDateTime, EndDateTime);
+            //priceUSDList = coinHistory.priceUSDList;
+            //timeList = coinHistory.timeList;
             series = new ISeries[]
-            {
-                new LineSeries<Decimal> {Values = priceUSDList }
-            };
+                {
+                new ColumnSeries<DateTimePoint>
+                {
+                    TooltipLabelFormatter = (chartPoint) =>
+                    $"{new DateTime((long) chartPoint.SecondaryValue):MMMM dd}: {chartPoint.PrimaryValue}",
+                    Values = coinHistory.dateTimePoint
+                    }
+                };
         }
     }
 }

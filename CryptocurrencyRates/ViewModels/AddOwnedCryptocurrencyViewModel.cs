@@ -18,10 +18,10 @@ namespace CryptocurrencyRates.ViewModels
         public double Amount { get => amount; set => SetProperty(ref amount, value); }
         public string Alias { get => alias; set => SetProperty(ref alias, value); }
 
-        ICryptocurrencyService cryptocurrencyService;
-        public AddOwnedCryptocurrencyViewModel(ICryptocurrencyService cryptocurrencyService)
+        IOwnedCryptocurrencyService ownedcryptocurrencyService;
+        public AddOwnedCryptocurrencyViewModel(IOwnedCryptocurrencyService OwnedcryptocurrencyService)
         {
-            this.cryptocurrencyService = cryptocurrencyService;
+            this.ownedcryptocurrencyService = OwnedcryptocurrencyService;
         }
 
         [RelayCommand]
@@ -31,11 +31,11 @@ namespace CryptocurrencyRates.ViewModels
             {
                 return;
             }
-            Cryptocurrency crypto = new Cryptocurrency();
-            crypto.Name = name;
+            OwnedCryptocurrency crypto = new OwnedCryptocurrency();
+            //crypto.Name = name;
             //crypto.Amount = amount;
-            crypto.Alias = alias;
-            await cryptocurrencyService.AddCrypto(crypto);
+            //crypto.Alias = alias;
+            await ownedcryptocurrencyService.AddOwnCrypto(crypto);
 
             await Shell.Current.GoToAsync("..");
         }

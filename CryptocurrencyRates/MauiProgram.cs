@@ -24,14 +24,16 @@ public static class MauiProgram
 
 		builder.Services.AddSingleton<ICryptocurrencyService>((e) => new CryptocurrencyService());
         builder.Services.AddSingleton<ISharedDataInterface>((e) => new SharedDataInterface());
+        builder.Services.AddSingleton<IOwnedCryptocurrencyService>((e) => new OwnedCryptocurrencyService());
         builder.Services.AddSingleton<MainPage>();
 		builder.Services.AddSingleton<CryptocurrencyViewModel>();
 		builder.Services.AddSingleton<CryptocurrencyPageViewModel>();
+		builder.Services.AddSingleton<OwnedCryptocurrencyViewModel>();
         builder.Services.AddTransient<AddOwnedCryptocurrencyPage>();
         builder.Services.AddTransient<CryptocurrencyPage>();
-        //builder.Services.AddTransient<OwnedCryptocurrencyListPage>();
+        builder.Services.AddTransient<OwnedCryptocurrencyListPage>();
         builder.Services.AddTransient<AddOwnedCryptocurrencyViewModel>();
-		//builder.Services.AddSingleton<ISharedDataInterface, SharedDataInterfaceImplementation>();
+        builder.Services.AddTransient<OwnedCryptocurrencyViewModel>();
 #if DEBUG
         builder.Logging.AddDebug();
 #endif

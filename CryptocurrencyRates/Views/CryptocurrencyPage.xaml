@@ -6,14 +6,14 @@
              x:DataType="viewmodel:CryptocurrencyPageViewModel"
              xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
              Title="CryptocurrencyPage">
-    <VerticalStackLayout>
+    <Grid>
+        <VerticalStackLayout>
         <Label 
             x:Name="CoinLabel"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
     </VerticalStackLayout>
-    <Grid>
-        <lvc:CartesianChart
+    <lvc:CartesianChart
             x:Name="CoinChart"/>
     </Grid>
 </ContentPage>

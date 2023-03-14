@@ -6,9 +6,20 @@
     xmlns:local="clr-namespace:CryptocurrencyRates.Views"
     Shell.FlyoutBehavior="Disabled">
 
-    <ShellContent
+    <!--<ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Route="MainPage" />-->
+    <TabBar>
+        <ShellContent
+            Title="Dashboard"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="Dashboard"/>
+        <ShellContent
+            Title="Own"
+            ContentTemplate="{DataTemplate local:OwnedCryptocurrencyListPage}"
+            Route="Own"/>
+    </TabBar>
+
 
 </Shell>

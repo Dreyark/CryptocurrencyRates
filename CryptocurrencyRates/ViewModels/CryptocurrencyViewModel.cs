@@ -62,6 +62,15 @@ namespace CryptocurrencyRates.ViewModels
         {
             sharedDataInterface.SetSharedCrypto(selectedItem);
             await Shell.Current.GoToAsync($"{nameof(CryptocurrencyPage)}");
+            //await AccelerometerChangedEventArgs.
+        }
+
+        [RelayCommand]
+        async Task OwnCryptoPage()
+        {
+            //await Shell.Current.GoToAsync($"{nameof(OwnedCryptocurrencyListPage)}"); 
+            //await Shell.
+            //await Navigation.PopAsync();
         }
 
     }
