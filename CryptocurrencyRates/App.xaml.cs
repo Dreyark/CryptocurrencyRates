@@ -1,4 +1,8 @@
-﻿namespace CryptocurrencyRates;
+﻿using Microsoft.UI;
+using Microsoft.UI.Windowing;
+using Windows.Graphics;
+
+namespace CryptocurrencyRates;
 
 public partial class App : Application
 {
@@ -6,7 +10,19 @@ public partial class App : Application
 	{
 		InitializeComponent();
 
-		MainPage = new AppShell();
-		//MainPage = new NavigationPage(new AppShell());
+        MainPage = new AppShell();
 	}
+
+    protected override Window CreateWindow(IActivationState activationState)
+    {
+        var window = base.CreateWindow(activationState);
+
+        const int newWidth = 500;
+        const int newHeight = 700;
+
+        window.Width = newWidth;
+        window.Height = newHeight;
+
+        return window;
+    }
 }

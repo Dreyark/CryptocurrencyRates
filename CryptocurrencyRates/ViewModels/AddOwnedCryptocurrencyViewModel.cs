@@ -13,11 +13,12 @@ namespace CryptocurrencyRates.ViewModels
 {
     public partial class AddOwnedCryptocurrencyViewModel : ObservableObject
     {
-        int id, coinId;
+        int coinIndex;
+        string description;
         double amount;
-        public int Id { get => id; set => SetProperty(ref id, value); }
+        public string Description { get => description; set => SetProperty(ref description, value); }
         public double Amount { get => amount; set => SetProperty(ref amount, value); }
-        public int CoinId { get => coinId; set => SetProperty(ref coinId, value); }
+        public int CoinIndex { get => coinIndex; set => SetProperty(ref coinIndex, value); }
 
         IOwnedCryptocurrencyService ownedCryptocurrencyService;
         ICryptocurrencyService cryptocurrencyService;
@@ -33,9 +34,9 @@ namespace CryptocurrencyRates.ViewModels
         async Task Save()
         {
             OwnedCryptocurrency ownCrypto = new OwnedCryptocurrency();
-            ownCrypto.Id = id;
+            ownCrypto.Description = description;
             ownCrypto.Amount = amount;
-            ownCrypto.CoinId = coinId;
+            ownCrypto.CoinId = coinIndex+1;
             await ownedCryptocurrencyService.AddOwnCrypto(ownCrypto);
 
             await Shell.Current.GoToAsync("..");

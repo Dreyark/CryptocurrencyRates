@@ -19,23 +19,12 @@ namespace CryptocurrencyRates.ViewModels
         IOwnedCryptocurrencyService ownedCryptocurrencyService;
         ICryptocurrencyService cryptocurrencyService;
 
-        public IEnumerable<dynamic> combinedCrypto()
-        {
-
-            var Crypto = cryptocurrencyService.GetCrypto();
-            var OwnCrypto = ownedCryptocurrencyService.GetOwnCrypto();
-            var combined = from o in OwnCrypto
-                           join c in Crypto on o.CoinId equals c.Id
-                           select new { o.CoinId, o.Amount, c.Name, c.changePercent24Hr, c.Alias, c.CurrentRateUsd };
-            return combined;
-        }
-
+        public IEnumerable<dynamic> combinedCrypto {get;set;}
 
         public OwnedCryptocurrencyViewModel(IOwnedCryptocurrencyService ownedCryptocurrencyService, ICryptocurrencyService cryptocurrencyService)
         {
             this.ownedCryptocurrencyService = ownedCryptocurrencyService;
             this.cryptocurrencyService = cryptocurrencyService;
-            combinedCrypto();
         }
 
         [RelayCommand]
@@ -50,9 +39,11 @@ namespace CryptocurrencyRates.ViewModels
                     OwnedCryptocurrencies.Add(ownCrypto);
                 }
             }
-            //var dynamics = from o in OwnedCryptocurrencies
-            //               join c in Cryptocurrencies on o.CoinId equals c.Id
-            //               select new { o.CoinId, o.Amount, c.Name, c.changePercent24Hr, c.Alias, c.CurrentRateUsd };
+            var Crypto = cryptocurrencyService.GetCrypto();
+            var combined = from o in ownedCryptocurrency
+                           join c in Crypto on o.CoinId equals c.Id
+                           select new { o.CoinId, o.Amount, c.Name, c.changePercent24Hr, c.Alias, c.CurrentRateUsd };
+            combinedCrypto =  combined;
         }
 
         [RelayCommand]

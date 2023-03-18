@@ -22,18 +22,20 @@
             <OnIdiom x:TypeArguments="x:Int32" Phone="65" Tablet="70" Desktop="80" />
         </ListView.RowHeight>
         <ListView.ItemTemplate>
-            <DataTemplate>
+                <DataTemplate x:DataType="model:OwnCryptoCombined" >
                 <ViewCell>
                     <ViewCell.ContextActions>
                     </ViewCell.ContextActions>
                     <Grid>
                         <Frame>
                             <StackLayout Orientation="Horizontal">
-                                <!--<Label
-                                    x:Name="IdLabel" Margin="5,5,5,5" VerticalOptions="CenterAndExpand" HorizontalOptions="Center"/>-->
-
-                                    <Label Text="{DynamicResource Name}"/>
-                            </StackLayout>
+                                <Label
+                                    Text="{Binding Name}" Margin="5,5,5,5" VerticalOptions="CenterAndExpand" HorizontalOptions="Center"/>
+                                <Label
+                                    Text="{Binding Amount}" Margin="5,5,5,5" VerticalOptions="CenterAndExpand" HorizontalOptions="Center"/>
+                                <Label
+                                    Text="{Binding changePercent24Hr}" Margin="5,5,5,5" VerticalOptions="CenterAndExpand" HorizontalOptions="Center"/>
+                                </StackLayout>
                         </Frame>
                     </Grid>
                 </ViewCell>

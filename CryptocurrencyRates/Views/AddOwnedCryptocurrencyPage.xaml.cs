@@ -8,5 +8,7 @@ public partial class AddOwnedCryptocurrencyPage : ContentPage
 	{
 		InitializeComponent();
 		BindingContext = vm;
-	}
+		CoinPicker.ItemsSource = vm.Cryptocurrencies.Select(x => x.Name).ToList();
+
+    }
 }

@@ -6,12 +6,13 @@
              x:DataType="viewmodel:AddOwnedCryptocurrencyViewModel"
              Title="Strona">
     <VerticalStackLayout>
-        <Label Text="Id" />
-        <Entry Text="{Binding Id}" />
-        <Label Text="CoinId" />
-        <Entry Text="{Binding CoinId}" />
+        <Picker x:Name="CoinPicker" SelectedIndex="{Binding CoinIndex}"
+        Title="Select a monkey">
+        </Picker>
         <Label Text="Amount" />
         <Entry Text="{Binding Amount}" />
+        <Label Text="Description" />
+        <Entry Text="{Binding Description}" />
         <Button Text="Save" Command="{Binding SaveCommand}" />
 
     </VerticalStackLayout>

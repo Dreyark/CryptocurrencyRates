@@ -11,11 +11,7 @@
             <toolkit:SelectedItemEventArgsConverter x:Key="SelectedItemEventArgsConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
-    <Grid
-        ColumnDefinitions="*,*"
-        ColumnSpacing="5"
-        RowDefinitions="*,Auto"
-        RowSpacing="0">
+    <Grid>
         <ListView ItemsSource="{Binding Cryptocurrencies}" SelectedItem="{Binding selectedItem}">
             <ListView.Behaviors>
                 <toolkit:EventToCommandBehavior
@@ -49,19 +45,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
-        <!--<Button
-            Grid.Row="1"
-            Grid.Column="0"
-            Margin="8"
-            Command="{Binding OwnCryptoPageCommand}"
-            Text="Własne" />
-        <Button
-            Grid.Row="1"
-            Grid.Column="1"
-            Margin="8"
-            Text="Find Closest" />-->
-
     </Grid>
 </ContentPage>
 
