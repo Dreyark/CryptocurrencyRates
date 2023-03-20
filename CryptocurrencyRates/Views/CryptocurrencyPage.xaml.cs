@@ -20,7 +20,10 @@ public partial class CryptocurrencyPage : ContentPage
     {
         base.OnAppearing();
         await CryptocurrencyPageVM.RefreshCommand.ExecuteAsync(this);
-        CoinLabel.Text = CryptocurrencyPageVM.crypto.Name;
-        CoinChart.Series = CryptocurrencyPageVM.series;
+        if (CryptocurrencyPageVM.crypto.Name != CoinLabel.Text)
+        {
+            CoinLabel.Text = CryptocurrencyPageVM.crypto.Name;
+            CoinChart.Series = CryptocurrencyPageVM.series;
+        }
     }
 }
