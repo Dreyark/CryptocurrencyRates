@@ -16,6 +16,10 @@
             ContentTemplate="{DataTemplate local:MainPage}"
             Route="Dashboard"/>
         <ShellContent
+            Title="Favourite"
+            ContentTemplate="{DataTemplate local:FavouriteCryptocurrencyListPage}"
+            Route="Favourite"/>
+        <ShellContent
             Title="Own"
             ContentTemplate="{DataTemplate local:OwnedCryptocurrencyListPage}"
             Route="Own"/>
