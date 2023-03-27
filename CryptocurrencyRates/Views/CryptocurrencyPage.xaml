@@ -15,5 +15,6 @@
     </VerticalStackLayout>
     <lvc:CartesianChart
             x:Name="CoinChart"/>
+        <CheckBox x:Name="isFavourite" CheckedChanged="isFavourite_CheckedChanged"/>
     </Grid>
 </ContentPage>

@@ -12,7 +12,7 @@ using System.Collections.ObjectModel;
 
 namespace CryptocurrencyRates.ViewModels
 {
-    public partial class OwnedCryptocurrencyViewModel
+    public partial class OwnedCryptocurrencyViewModel : ObservableObject
     {
         public ObservableCollection<OwnedCryptocurrency> OwnedCryptocurrencies { get; set; } = new ObservableCollection<OwnedCryptocurrency>();
         public List<Cryptocurrency> Cryptocurrencies { get; set; } = new List<Cryptocurrency>();

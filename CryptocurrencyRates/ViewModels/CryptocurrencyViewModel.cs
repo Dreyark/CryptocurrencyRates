@@ -20,7 +20,7 @@ namespace CryptocurrencyRates.ViewModels
     public partial class CryptocurrencyViewModel : ObservableObject
     {
         public ObservableCollection<Cryptocurrency> Cryptocurrencies { get; set; } = new ObservableCollection<Cryptocurrency>();
-        CoinListUpdater coinListUpdater = new CoinListUpdater();
+        //CoinUpdater coinUpdater = new CoinUpdater();
         ICryptocurrencyService cryptocurrencyService;
         ISharedDataInterface sharedDataInterface;
 
@@ -50,7 +50,6 @@ namespace CryptocurrencyRates.ViewModels
         {
             sharedDataInterface.SetSharedCrypto(selectedItem);
             await Shell.Current.GoToAsync($"{nameof(CryptocurrencyPage)}");
-            //await AccelerometerChangedEventArgs.
         }
     }
 }

@@ -10,14 +10,29 @@ namespace CryptocurrencyRates.Services
     public class SharedDataInterface : ISharedDataInterface
     {
         Cryptocurrency cryptocurrencyShare;
+        Cryptocurrency FavouritecryptocurrencyShare;
         public void SetSharedCrypto(Cryptocurrency crypto)
         {
-            cryptocurrencyShare = crypto;
+            //if (page == 1)
+            //{
+                cryptocurrencyShare = crypto;
+            //}
+            //else
+            //{
+            //    FavouritecryptocurrencyShare = crypto;
+            //}
         }
 
         public Cryptocurrency GetSharedCrypto()
         {
-            return cryptocurrencyShare;
+            //if (page == 1)
+            //{
+                return cryptocurrencyShare;
+            //}
+            //else
+            //{
+            //    return FavouritecryptocurrencyShare;
+            //}
         }
     }
 }

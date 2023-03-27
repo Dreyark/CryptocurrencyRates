@@ -7,10 +7,44 @@
              xmlns:viewmodel="clr-namespace:CryptocurrencyRates.ViewModels"
              x:DataType="viewmodel:CryptocurrencyViewModel"
              Title="FavouriteCryptocurrencyListPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:SelectedItemEventArgsConverter x:Key="SelectedItemEventArgsConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid>
+        <ListView x:Name="FavouriteListView" SelectedItem="{Binding selectedItem}">
+            <ListView.Behaviors>
+                <toolkit:EventToCommandBehavior
+                EventName="ItemTapped"
+                Command="{Binding CryptoSelectedCommand}" />
+            </ListView.Behaviors>
+            <ListView.RowHeight>
+                <OnIdiom x:TypeArguments="x:Int32" Phone="65" Tablet="70" Desktop="80" />
+            </ListView.RowHeight>
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:Cryptocurrency">
+                    <ViewCell>
+                        <ViewCell.ContextActions>
+                        </ViewCell.ContextActions>
+                        <Grid>
+                            <Frame>
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="{Binding imgSRC}" HeightRequest="55" WidthRequest="55" Margin="10,5,10,5" VerticalOptions="CenterAndExpand" HorizontalOptions="Center"></Image>
+                                    <Label
+                                    Text="{Binding Id}" Margin="5,5,5,5" VerticalOptions="CenterAndExpand" HorizontalOptions="Center"/>
+                                    <Label
+                                    Text="{Binding Alias}" Margin="5,5,5,5" FontAttributes="Bold" VerticalOptions="CenterAndExpand" HorizontalOptions="Center"/>
+                                    <Label
+                                    Text="{Binding Name}" Margin="5,5,5,5"  VerticalOptions="CenterAndExpand" HorizontalOptions="Center"/>
+                                    <Label
+                                    Text="{Binding CurrentRateUsd}" Margin="5,5,5,5"  VerticalOptions="CenterAndExpand" HorizontalOptions="Center"/>
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
 </ContentPage>

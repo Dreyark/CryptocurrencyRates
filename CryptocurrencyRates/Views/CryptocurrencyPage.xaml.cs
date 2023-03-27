@@ -14,16 +14,23 @@ public partial class CryptocurrencyPage : ContentPage
         InitializeComponent();
         BindingContext = vm;
         CryptocurrencyPageVM = vm;
-    }
-
-    protected override async void OnAppearing()
-    {
-        base.OnAppearing();
-        await CryptocurrencyPageVM.RefreshCommand.ExecuteAsync(this);
+        CryptocurrencyPageVM.RefreshCommand.ExecuteAsync(this);
         if (CryptocurrencyPageVM.crypto.Name != CoinLabel.Text)
         {
             CoinLabel.Text = CryptocurrencyPageVM.crypto.Name;
             CoinChart.Series = CryptocurrencyPageVM.series;
         }
+    }
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        isFavourite.IsChecked = CryptocurrencyPageVM.crypto.IsFavourite;
+
+    }
+    private void isFavourite_CheckedChanged(Object sender, EventArgs e)
+    {
+
+        CryptocurrencyPageVM.crypto.IsFavourite = isFavourite.IsChecked;
     }
 }

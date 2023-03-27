@@ -15,7 +15,7 @@ using System.ComponentModel;
 
 namespace CryptocurrencyRates.Services
 {
-    public class CoinListUpdater
+    public class CoinUpdater
     {
         ICryptocurrencyService cryptocurrencyService = new CryptocurrencyService();
         Root Coins = new Root();
@@ -40,11 +40,11 @@ namespace CryptocurrencyRates.Services
             public long timestamp { get; set; }
         }
 
-        public CoinListUpdater()
+        public CoinUpdater()
         {
             using (var webClient = new WebClient())
             {
-                var jsonString = webClient.DownloadString("https://api.coincap.io/v2/assets?limit=500");
+                var jsonString = webClient.DownloadString("https://api.coincap.io/v2/assets?limit=100");
                 var valueSet = JsonConvert.DeserializeObject<Root>(jsonString);
                 Coins = valueSet;
             }

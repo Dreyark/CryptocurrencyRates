@@ -15,7 +15,7 @@
         <!--SelectedItem="{Binding selectedItem}"-->
         <!--<ListView.Behaviors>
             <toolkit:EventToCommandBehavior
-                EventName="ItemSelected"
+                EventName="ItemTapped"
                 Command="{Binding CryptoSelectedCommand}" />
         </ListView.Behaviors>-->
         <ListView.RowHeight>

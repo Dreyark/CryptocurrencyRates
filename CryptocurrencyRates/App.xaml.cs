@@ -1,18 +1,19 @@
-﻿using Microsoft.UI;
-using Microsoft.UI.Windowing;
-using Windows.Graphics;
-
+﻿#if WINDOWS
+    using Microsoft.UI;
+    using Microsoft.UI.Windowing;
+    using Windows.Graphics;
+#endif
 namespace CryptocurrencyRates;
 
 public partial class App : Application
 {
 	public App()
 	{
-		InitializeComponent();
+        InitializeComponent();
 
         MainPage = new AppShell();
 	}
-
+#if WINDOWS
     protected override Window CreateWindow(IActivationState activationState)
     {
         var window = base.CreateWindow(activationState);
@@ -25,4 +26,5 @@ public partial class App : Application
 
         return window;
     }
+#endif
 }

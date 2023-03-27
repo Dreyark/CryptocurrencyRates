@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:CryptocurrencyRates.Models"
+             xmlns:viewmodel="clr-namespace:CryptocurrencyRates.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:DataType="viewmodel:RateViewModel"
+             x:Class="CryptocurrencyRates.Views.RateListPage"
+             Title="RateListPage">
+    <Grid>
+        <ListView ItemsSource="{Binding Rates}">
+            <ListView.RowHeight>
+                <OnIdiom x:TypeArguments="x:Int32" Phone="65" Tablet="70" Desktop="80" />
+            </ListView.RowHeight>
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:Rate">
+                    <ViewCell>
+                        <ViewCell.ContextActions>
+                        </ViewCell.ContextActions>
+                        <Grid>
+                            <Frame>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label
+                                    Text="{Binding sId}" Margin="5,5,5,5" VerticalOptions="CenterAndExpand" HorizontalOptions="Center"/>
+                                    <Label
+                                    Text="{Binding symbol}" Margin="5,5,5,5" FontAttributes="Bold" VerticalOptions="CenterAndExpand" HorizontalOptions="Center"/>
+                                    <Label
+                                    Text="{Binding rateUsd}"  Margin="5,5,5,5"  VerticalOptions="CenterAndExpand" HorizontalOptions="Center"/>
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</ContentPage>
