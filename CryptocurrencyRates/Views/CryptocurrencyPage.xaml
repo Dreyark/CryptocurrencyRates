@@ -5,16 +5,34 @@
              xmlns:viewmodel="clr-namespace:CryptocurrencyRates.ViewModels"
              x:DataType="viewmodel:CryptocurrencyPageViewModel"
              xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
-             Title="CryptocurrencyPage">
+             Shell.NavBarIsVisible = "true">
     <Grid>
-        <VerticalStackLayout>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <VerticalStackLayout Grid.Row="2">
         <Label 
             x:Name="CoinLabel"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
     </VerticalStackLayout>
-    <lvc:CartesianChart
-            x:Name="CoinChart"/>
-        <CheckBox x:Name="isFavourite" CheckedChanged="isFavourite_CheckedChanged"/>
+        <lvc:CartesianChart Grid.Row="0" Grid.RowSpan="4" Grid.Column="0" Grid.ColumnSpan="6"
+            x:Name="CoinChart" />
+        <Label Text="is Favourite?" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Margin="5,5,5,5"/>
+        <CheckBox Grid.Row="4" Grid.Column="1" Margin="10,0,10,10"
+            x:Name="isFavourite" CheckedChanged="isFavourite_CheckedChanged"/>
     </Grid>
 </ContentPage>

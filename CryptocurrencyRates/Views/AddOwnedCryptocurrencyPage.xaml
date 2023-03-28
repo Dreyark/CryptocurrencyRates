@@ -4,7 +4,8 @@
              xmlns:viewmodel="clr-namespace:CryptocurrencyRates.ViewModels"
              x:Class="CryptocurrencyRates.Views.AddOwnedCryptocurrencyPage"
              x:DataType="viewmodel:AddOwnedCryptocurrencyViewModel"
-             Title="Strona">
+             Title="Add Cryptocurrency"
+             Shell.NavBarIsVisible = "true">
     <VerticalStackLayout>
         <Picker x:Name="CoinPicker" SelectedIndex="{Binding CoinIndex}"
         Title="Select a monkey">

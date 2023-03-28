@@ -18,8 +18,8 @@ public partial class App : Application
     {
         var window = base.CreateWindow(activationState);
 
-        const int newWidth = 500;
-        const int newHeight = 700;
+        const int newWidth = 450;
+        const int newHeight = 680;
 
         window.Width = newWidth;
         window.Height = newHeight;

@@ -6,7 +6,7 @@
              xmlns:model="clr-namespace:CryptocurrencyRates.Models"
              xmlns:viewmodel="clr-namespace:CryptocurrencyRates.ViewModels"
              x:DataType="viewmodel:CryptocurrencyViewModel"
-             Title="FavouriteCryptocurrencyListPage">
+             Title="Favourites">
     <ContentPage.Resources>
         <ResourceDictionary>
             <toolkit:SelectedItemEventArgsConverter x:Key="SelectedItemEventArgsConverter" />

@@ -66,7 +66,7 @@ namespace CryptocurrencyRates.Services
                         Alias = coin.symbol,
                         //imgSRC = FileSystem.OpenAppPackageFileAsync + coin.symbol.ToLower() + ".png",
                         imgSRC = "https://assets.coincap.io/assets/icons/" + coin.symbol.ToLower() + "@2x.png",
-                        CurrentRateUsd = coin.priceUsd,
+                        CurrentRateUsd = coin.priceUsd.Remove(coin.priceUsd.Length - 9),
                         supply = coin.supply,
                         maxSupply = coin.maxSupply,
                         marketCapUsd = coin.marketCapUsd,

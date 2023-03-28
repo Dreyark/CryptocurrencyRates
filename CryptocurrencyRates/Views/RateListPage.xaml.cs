@@ -11,6 +11,7 @@ public partial class RateListPage : ContentPage
         RateVM.RefreshCommand.Execute(this);
         InitializeComponent();
         BindingContext = RateVM;
+        rateListView.ItemsSource = RateVM.Rates.OrderBy(e=>e.sId);
     }
     protected override async void OnAppearing()
     {

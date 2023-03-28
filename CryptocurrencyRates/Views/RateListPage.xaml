@@ -6,26 +6,34 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:DataType="viewmodel:RateViewModel"
              x:Class="CryptocurrencyRates.Views.RateListPage"
-             Title="RateListPage">
+             Shell.NavBarIsVisible = "true"
+             Title="Exchange Rates">
     <Grid>
-        <ListView ItemsSource="{Binding Rates}">
+        <ListView x:Name="rateListView" SeparatorVisibility="None" Grid.ColumnSpan="10" Grid.RowSpan="10">
             <ListView.RowHeight>
-                <OnIdiom x:TypeArguments="x:Int32" Phone="65" Tablet="70" Desktop="80" />
+                <OnIdiom x:TypeArguments="x:Int32" Phone="60" Tablet="70" Desktop="80"/>
             </ListView.RowHeight>
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="model:Rate">
                     <ViewCell>
                         <ViewCell.ContextActions>
                         </ViewCell.ContextActions>
-                        <Grid>
-                            <Frame>
+                        <Grid Padding="5,5,5,5">
+                            <Frame CornerRadius="20" BackgroundColor="#1F1F1F" Padding="15,5,5,5">
                                 <StackLayout Orientation="Horizontal">
-                                    <Label
-                                    Text="{Binding sId}" Margin="5,5,5,5" VerticalOptions="CenterAndExpand" HorizontalOptions="Center"/>
-                                    <Label
-                                    Text="{Binding symbol}" Margin="5,5,5,5" FontAttributes="Bold" VerticalOptions="CenterAndExpand" HorizontalOptions="Center"/>
-                                    <Label
-                                    Text="{Binding rateUsd}"  Margin="5,5,5,5"  VerticalOptions="CenterAndExpand" HorizontalOptions="Center"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="180" />
+                                            <ColumnDefinition Width="50" />
+                                            <ColumnDefinition Width="200" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label
+                                    Text="{Binding sId}" Margin="10,0,0,0" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" Grid.Column="0"/>
+                                        <Label
+                                    Text="{Binding symbol}" Margin="5,5,5,5" FontAttributes="Bold" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Grid.Column="1"/>
+                                        <Label
+                                    Text="{Binding rateUsd}"  Margin="15,5,5,5"  VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Grid.Column="2"/>
+                                    </Grid>
                                 </StackLayout>
                             </Frame>
                         </Grid>

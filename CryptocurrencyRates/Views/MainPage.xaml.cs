@@ -9,10 +9,8 @@ public partial class MainPage : ContentPage
     {
         CryptocurrencyVM = vm;
         CryptocurrencyVM.RefreshCommand.Execute(this);
-        //CryptocurrencyViewModel vm
         InitializeComponent();
         BindingContext = CryptocurrencyVM;
-
     }
 
     protected override async void OnAppearing()

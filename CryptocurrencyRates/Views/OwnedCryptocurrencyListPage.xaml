@@ -6,7 +6,8 @@
              xmlns:model="clr-namespace:CryptocurrencyRates.Models"
              xmlns:viewmodel="clr-namespace:CryptocurrencyRates.ViewModels"
              x:DataType="viewmodel:OwnedCryptocurrencyViewModel"
-             Title="OwnedCryptocurrencyListPage">
+             Title="My Wallet"
+             Shell.NavBarIsVisible = "true">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Command="{Binding AddCommand}"/>
     </ContentPage.ToolbarItems>

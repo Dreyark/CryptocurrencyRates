@@ -17,6 +17,7 @@ public partial class CryptocurrencyPage : ContentPage
         CryptocurrencyPageVM.RefreshCommand.ExecuteAsync(this);
         if (CryptocurrencyPageVM.crypto.Name != CoinLabel.Text)
         {
+            Title = CryptocurrencyPageVM.crypto.Name;
             CoinLabel.Text = CryptocurrencyPageVM.crypto.Name;
             CoinChart.Series = CryptocurrencyPageVM.series;
         }
