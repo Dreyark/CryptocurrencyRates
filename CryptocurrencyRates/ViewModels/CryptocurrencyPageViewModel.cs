@@ -12,6 +12,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LiveChartsCore.Defaults;
+using LiveChartsCore.SkiaSharpView.Painting;
+using SkiaSharp;
 
 namespace CryptocurrencyRates.ViewModels
 {
@@ -21,6 +23,7 @@ namespace CryptocurrencyRates.ViewModels
         ISharedDataInterface sharedDataInterface;
         public Cryptocurrency crypto { get; set; }
         public ISeries[] series { get; set; }
+        public Axis[] XAxes { get; set; }
 
         //public ObservableCollection<Decimal> priceUSDList;
         //public ObservableCollection<DateTime> timeList;
@@ -33,24 +36,49 @@ namespace CryptocurrencyRates.ViewModels
         async Task Refresh()
         {
             crypto = sharedDataInterface.GetSharedCrypto();
-            CoinHistoryValues();
+            long now = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+            long lastYear = DateTimeOffset.UtcNow.AddYears(-1).ToUnixTimeMilliseconds();
+            CoinHistoryValues(lastYear.ToString(), now.ToString(), "d1");
         }
-        public void CoinHistoryValues()
+        public void ChangeChart(string StartDateTime, string EndDateTime, string interval)
         {
-            string StartDateTime = "1333500000000";
-            string EndDateTime = "1800000000000";
-            CoinHistory coinHistory = new CoinHistory(crypto.coinId, "d1", StartDateTime, EndDateTime);
+            crypto = sharedDataInterface.GetSharedCrypto();
+            CoinHistoryValues(StartDateTime, EndDateTime, interval);
+        }
+        public void CoinHistoryValues(string StartDateTime,string EndDateTime, string interval )
+        {
+            //string StartDateTime = "1333500000000";
+            //string EndDateTime = "1800000000000";
+            ////string StartDateTime = " 	31556926";
+            //string EndDateTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString();
+            CoinHistory coinHistory = new CoinHistory(crypto.coinId, interval, StartDateTime, EndDateTime);
             //priceUSDList = coinHistory.priceUSDList;
             //timeList = coinHistory.timeList;
             series = new ISeries[]
                 {
-                new ColumnSeries<DateTimePoint>
+                new LineSeries<DateTimePoint>
                 {
                     TooltipLabelFormatter = (chartPoint) =>
-                    $"{new DateTime((long) chartPoint.SecondaryValue):MMMM dd}: {chartPoint.PrimaryValue}",
-                    Values = coinHistory.dateTimePoint
+                    $"{chartPoint.PrimaryValue}$  {new DateTime((long) chartPoint.SecondaryValue):dd MMMM yyyy hh:mm}",
+                    Values = coinHistory.dateTimePoint,
+                    Stroke = new SolidColorPaint(SKColors.DarkOrange) { StrokeThickness = 1 },
+                    Fill = new SolidColorPaint(SKColors.Orange.WithAlpha(40)),
+                    GeometryFill = null,
+                    GeometryStroke = null
+                    
+
                     }
                 };
+            XAxes = new Axis[]
+            {
+                new Axis
+                {
+                    Labeler = value => new DateTime((long) value).ToString("dd.mm.yyyy hh:mm"),
+                    LabelsRotation = 60,
+                    TextSize = 14,
+                    UnitWidth = TimeSpan.FromDays(1).Ticks
+                }
+            };
         }
     }
 }

@@ -19,16 +19,16 @@
 
     <!-- Phone -->
     <TabBar>
-        <Tab Title="Cryptocurrency" Icon="bitcoin.png">
-            <ShellContent
+        <ShellContent 
+            Title="Cryptocurrency"
+            Icon="bitcoin.png"
             ContentTemplate="{DataTemplate local:MainPage}"
             Route="Cryptocurrency"/>
-        </Tab>
-        <Tab Title="Favourites" Icon="star.png">
-            <ShellContent
+        <ShellContent 
+            Title="Favorites" 
+            Icon="wstar.png"
             ContentTemplate="{DataTemplate local:FavouriteCryptocurrencyListPage}"
             Route="Favourites"/>
-        </Tab>
         <ShellContent
             Title="My Crypto"
 			Icon="wallet.png"
@@ -42,18 +42,18 @@
     </TabBar>
 
     <!-- Desktop-->
-    <FlyoutItem Title="Cryptocurrency" Icon="bitcoin.png">
+    <FlyoutItem Title="Cryptocurrency" Icon="wbitcoin.png">
         <ShellContent ContentTemplate="{DataTemplate local:MainPage}"/>
     </FlyoutItem>
-    <FlyoutItem Title="Favorites" Icon="star.png">
+    <FlyoutItem Title="Favorites" Icon="wstar.png">
         <ShellContent ContentTemplate="{DataTemplate local:FavouriteCryptocurrencyListPage}"/>
     </FlyoutItem>
-    <FlyoutItem Title="My Wallet" Icon="wallet.png">
+    <FlyoutItem Title="My Wallet" Icon="wwallet.png">
         <ShellContent
             ContentTemplate="{DataTemplate local:OwnedCryptocurrencyListPage}"
             Route="MyCrypto"/>
     </FlyoutItem>
-    <FlyoutItem Title="Exchange Rates" Icon="cash.png">
+    <FlyoutItem Title="Exchange Rates" Icon="wcash.png">
         <ShellContent
             ContentTemplate="{DataTemplate local:RateListPage}"
             Route="ExchangeRates"/>

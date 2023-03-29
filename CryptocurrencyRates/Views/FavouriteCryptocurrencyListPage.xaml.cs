@@ -1,4 +1,5 @@
 using CryptocurrencyRates.ViewModels;
+using Microsoft.Maui.Controls;
 using System.Linq;
 using System.Net.WebSockets;
 

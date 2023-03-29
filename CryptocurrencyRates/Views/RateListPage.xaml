@@ -8,8 +8,15 @@
              x:Class="CryptocurrencyRates.Views.RateListPage"
              Shell.NavBarIsVisible = "true"
              Title="Exchange Rates">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Exchange" IconImageSource="{OnIdiom Phone='exchange.png', Default='exchange.png'}" Clicked="Exchange_Clicked"/>
+    </ContentPage.ToolbarItems>
     <Grid>
-        <ListView x:Name="rateListView" SeparatorVisibility="None" Grid.ColumnSpan="10" Grid.RowSpan="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="200" />
+        </Grid.RowDefinitions>
+        <ListView x:Name="rateListView" SeparatorVisibility="None" Grid.ColumnSpan="10" Grid.Row="0" Grid.RowSpan="2">
             <ListView.RowHeight>
                 <OnIdiom x:TypeArguments="x:Int32" Phone="60" Tablet="70" Desktop="80"/>
             </ListView.RowHeight>
@@ -41,5 +48,30 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Frame x:Name="ExchangeFrame" CornerRadius="30" HeightRequest="230" MinimumWidthRequest="400" Grid.Row="1" BackgroundColor="#ef020202" IsVisible="false">
+            <VerticalStackLayout>
+                <Grid>
+                    <!--<Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="160" />
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="160" />
+                    </Grid.ColumnDefinitions>-->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1" />
+                        <RowDefinition Height="80" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="8*" />
+                    </Grid.RowDefinitions>
+                    <Picker x:Name="FirstCurrPicker" HorizontalOptions="Start" WidthRequest="170" HeightRequest="75" FontSize="13"
+                            SelectedIndex="{Binding FirstCurr}" Title="From: Select currency" Grid.Column="0" Grid.Row="1" SelectedIndexChanged="SelectedIndexChanged" >
+                    </Picker>
+                    <Picker x:Name="SecCurrPicker" HorizontalOptions="End"  WidthRequest="170" HeightRequest="75" FontSize="13"
+                            SelectedIndex="{Binding SecCurr}" Title="To: Select currency" Grid.Column="3" Grid.Row="1" SelectedIndexChanged="SelectedIndexChanged" >
+                    </Picker>
+                    <Entry Placeholder="0.00" x:Name="FirstCurr" Keyboard="Numeric" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" Grid.Row="3" Grid.Column="0" MinimumWidthRequest="100" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextChanged="SelectedIndexChanged"/>
+                    <Label x:Name="SecCurr" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Grid.Row="3" MinimumWidthRequest="100" Grid.Column="3" VerticalTextAlignment="Start" HorizontalTextAlignment="Start"/>
+                </Grid>
+            </VerticalStackLayout>
+        </Frame>
     </Grid>
 </ContentPage>

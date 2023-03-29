@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace CryptocurrencyRates.Models
 {
     public class Rate
     {
+        [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public string sId { get; set; }
         public string symbol { get; set; }

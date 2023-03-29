@@ -12,6 +12,7 @@ using CryptocurrencyRates.Services;
 using System.Threading.Tasks;
 using System.Text.Json.Serialization;
 using System.ComponentModel;
+using System.Globalization;
 
 namespace CryptocurrencyRates.Services
 {
@@ -70,7 +71,7 @@ namespace CryptocurrencyRates.Services
                         supply = coin.supply,
                         maxSupply = coin.maxSupply,
                         marketCapUsd = coin.marketCapUsd,
-                        changePercent24Hr = coin.changePercent24Hr
+                        changePercent24Hr = coin.changePercent24Hr.Remove(coin.changePercent24Hr.Length - 14)+"%"
                     };
                     cryptocurrencyService.AddCrypto(crypto);
                 }

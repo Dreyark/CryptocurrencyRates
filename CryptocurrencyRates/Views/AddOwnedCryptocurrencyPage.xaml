@@ -8,7 +8,7 @@
              Shell.NavBarIsVisible = "true">
     <VerticalStackLayout>
         <Picker x:Name="CoinPicker" SelectedIndex="{Binding CoinIndex}"
-        Title="Select a monkey">
+        Title="Select Cryptocurrency">
         </Picker>
         <Label Text="Amount" />
         <Entry Text="{Binding Amount}" />

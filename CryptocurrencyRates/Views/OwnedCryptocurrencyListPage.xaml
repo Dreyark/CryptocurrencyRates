@@ -9,7 +9,7 @@
              Title="My Wallet"
              Shell.NavBarIsVisible = "true">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Command="{Binding AddCommand}"/>
+        <ToolbarItem Text="Add" IconImageSource="{OnIdiom Phone='wadd.png', Default='wadd.png'}" Command="{Binding AddCommand}"/>
     </ContentPage.ToolbarItems>
     <Grid>
         <ListView x:Name="OwnCryptoList" >

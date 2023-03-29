@@ -13,6 +13,9 @@ namespace CryptocurrencyRates.ViewModels
 {
     public partial class RateViewModel : ObservableObject
     {
+        int firstCurr, secCurr;
+        public int FirstCurr { get => firstCurr; set => SetProperty(ref firstCurr, value); }
+        public int SecCurr { get => secCurr; set => SetProperty(ref secCurr, value); }
         public ObservableCollection<Rate> Rates { get; set; } = new ObservableCollection<Rate>();
         //RateUpdater rateUpdater = new RateUpdater();
         IRateService rateService;
