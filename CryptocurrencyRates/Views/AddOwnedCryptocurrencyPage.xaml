@@ -5,16 +5,23 @@
              x:Class="CryptocurrencyRates.Views.AddOwnedCryptocurrencyPage"
              x:DataType="viewmodel:AddOwnedCryptocurrencyViewModel"
              Title="Add Cryptocurrency"
-             Shell.NavBarIsVisible = "true">
+             Shell.NavBarIsVisible = "true" Background="black">
     <VerticalStackLayout>
-        <Picker x:Name="CoinPicker" SelectedIndex="{Binding CoinIndex}"
-        Title="Select Cryptocurrency">
-        </Picker>
-        <Label Text="Amount" />
-        <Entry Text="{Binding Amount}" />
-        <Label Text="Description" />
-        <Entry Text="{Binding Description}" />
-        <Button Text="Save" Command="{Binding SaveCommand}" />
-
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10" />
+                <RowDefinition Height="80" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="60" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="100" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="200" />
+            </Grid.RowDefinitions>
+            <Picker x:Name="CoinPicker" SelectedIndex="{Binding CombinedCrypto.CoinId}" Title="Select Cryptocurrency" Grid.Row="1" WidthRequest="320" HeightRequest="80" BackgroundColor="#bb222222" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+            <Entry Keyboard="Numeric" Text="{Binding CombinedCrypto.Amount}" x:Name="AmountEntry" Grid.Row="3" Placeholder="Amount" BackgroundColor="#bb222222" VerticalOptions="Fill" HorizontalOptions="Fill"/>
+            <Editor  Text="{Binding CombinedCrypto.Description}" x:Name="DescrEntry" Grid.Row="5" Placeholder="Description" BackgroundColor="#bb222222"  VerticalOptions="Fill" HorizontalOptions="Fill" VerticalTextAlignment="Start" HorizontalTextAlignment="Start" FontAutoScalingEnabled="True" />
+            <Button Text="Save" Command="{Binding SaveCommand}" Grid.Row="7" VerticalOptions="Center" HorizontalOptions="Fill" HeightRequest="100" BackgroundColor="#ffff6e00" TextColor="White" FontSize="30" FontAttributes="Bold"/>
+        </Grid>
     </VerticalStackLayout>
-</ContentPage>
+</ContentPage> 

@@ -64,7 +64,7 @@ namespace CryptocurrencyRates.ViewModels
                     Stroke = new SolidColorPaint(SKColors.DarkOrange) { StrokeThickness = 1 },
                     Fill = new SolidColorPaint(SKColors.Orange.WithAlpha(40)),
                     GeometryFill = null,
-                    GeometryStroke = null
+                    GeometryStroke = null,
                     
 
                     }
@@ -75,7 +75,7 @@ namespace CryptocurrencyRates.ViewModels
                 {
                     Labeler = value => new DateTime((long) value).ToString("dd.mm.yyyy hh:mm"),
                     LabelsRotation = 60,
-                    TextSize = 14,
+                    TextSize = 30,
                     UnitWidth = TimeSpan.FromDays(1).Ticks
                 }
             };

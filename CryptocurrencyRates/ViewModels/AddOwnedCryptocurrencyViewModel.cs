@@ -11,20 +11,27 @@ using System.Threading.Tasks;
 
 namespace CryptocurrencyRates.ViewModels
 {
+    [QueryProperty(nameof(CombinedCrypto), "CombinedCrypto")]
     public partial class AddOwnedCryptocurrencyViewModel : ObservableObject
     {
-        int coinIndex;
-        string description;
-        double amount;
-        public string Description { get => description; set => SetProperty(ref description, value); }
-        public double Amount { get => amount; set => SetProperty(ref amount, value); }
-        public int CoinIndex { get => coinIndex; set => SetProperty(ref coinIndex, value); }
+        [ObservableProperty]
+        OwnCryptoCombined _CombinedCrypto;
+
+        //int coinIndex;
+        //string description;
+        //double amount;
+        //int id;
+        //public string Description { get => description; set => SetProperty(ref description, value); }
+        //public double Amount { get => amount; set => SetProperty(ref amount, value); }
+        //public int CoinIndex { get => coinIndex; set => SetProperty(ref coinIndex, value); }
 
         IOwnedCryptocurrencyService ownedCryptocurrencyService;
         ICryptocurrencyService cryptocurrencyService;
+        ISharedDataInterface sharedDataInterface;
         public List<Cryptocurrency> Cryptocurrencies { get; set; } = new List<Cryptocurrency>();
-        public AddOwnedCryptocurrencyViewModel(IOwnedCryptocurrencyService ownedCryptocurrencyService, ICryptocurrencyService cryptocurrencyService)
+        public AddOwnedCryptocurrencyViewModel(IOwnedCryptocurrencyService ownedCryptocurrencyService, ICryptocurrencyService cryptocurrencyService, ISharedDataInterface sharedDataInterface)
         {
+            this.sharedDataInterface = sharedDataInterface;
             this.ownedCryptocurrencyService = ownedCryptocurrencyService;
             this.cryptocurrencyService = cryptocurrencyService;
             Cryptocurrencies = cryptocurrencyService.GetCrypto();
@@ -34,11 +41,18 @@ namespace CryptocurrencyRates.ViewModels
         async Task Save()
         {
             OwnedCryptocurrency ownCrypto = new OwnedCryptocurrency();
-            ownCrypto.Description = description;
-            ownCrypto.Amount = amount;
-            ownCrypto.CoinId = coinIndex+1;
-            await ownedCryptocurrencyService.AddOwnCrypto(ownCrypto);
-
+            ownCrypto.Description = _CombinedCrypto.Description;
+            ownCrypto.Amount = _CombinedCrypto.Amount;
+            ownCrypto.CoinId = _CombinedCrypto.CoinId+1;
+            if(_CombinedCrypto.Id > 0) {
+                ownCrypto.Id = _CombinedCrypto.Id;
+                //sharedDataInterface.SetSharedOwnedCrypto(null);
+                await ownedCryptocurrencyService.UpdateOwnCrypto(ownCrypto);
+            }
+            else
+            {
+                await ownedCryptocurrencyService.AddOwnCrypto(ownCrypto);
+            }
             await Shell.Current.GoToAsync("..");
         }
     }

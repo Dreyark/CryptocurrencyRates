@@ -11,5 +11,8 @@ namespace CryptocurrencyRates.Services
     {
         void SetSharedCrypto(Cryptocurrency crypto);
         Cryptocurrency GetSharedCrypto();
+
+        void SetSharedOwnedCrypto(OwnCryptoCombined crypto);
+        OwnCryptoCombined GetSharedOwnedCrypto();
     }
 }

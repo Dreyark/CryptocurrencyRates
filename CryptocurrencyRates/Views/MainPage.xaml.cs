@@ -17,6 +17,7 @@ public partial class MainPage : ContentPage
     {
         base.OnAppearing();
         await CryptocurrencyVM.RefreshCommand.ExecuteAsync(this);
+        CryptoListView.SelectedItem = null;
     }
 
 

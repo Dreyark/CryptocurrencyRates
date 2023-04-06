@@ -47,7 +47,7 @@ namespace CryptocurrencyRates.Services
             {
                 //priceUSDList.Add(Convert.ToDecimal(x.priceUsd, CultureInfo.InvariantCulture));
                 //timeList.Add(x.date);
-                dateTimePoint.Add(new DateTimePoint() { DateTime = x.date, Value = Convert.ToDouble(x.priceUsd.Remove(x.priceUsd.Length-14), CultureInfo.InvariantCulture) });
+                dateTimePoint.Add(new DateTimePoint() { DateTime = x.date, Value = Convert.ToDouble(x.priceUsd.Remove(x.priceUsd.Length-6), CultureInfo.InvariantCulture) });
             }
         }
     }

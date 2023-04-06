@@ -48,7 +48,18 @@ namespace CryptocurrencyRates.Services
         {
             await Init();
 
+
             var id = db.Insert(cryptocurrency);
+
+        }
+
+        public async Task UpdateOwnCrypto(OwnedCryptocurrency cryptocurrency)
+        {
+            await Init();
+
+
+            var id = db.Update(cryptocurrency);
+
         }
 
         public async Task RemoveOwnCrypto(int id)

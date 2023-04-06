@@ -1,6 +1,9 @@
+using CryptocurrencyRates.Models;
 using CryptocurrencyRates.ViewModels;
 using Microsoft.Maui;
 using Microsoft.Maui.Controls.Internals;
+using Microsoft.Maui.Controls.Xaml;
+using System.Data;
 
 namespace CryptocurrencyRates.Views;
 
@@ -17,8 +20,7 @@ public partial class OwnedCryptocurrencyListPage : ContentPage
     protected override async void OnAppearing()
     {
         await VM.RefreshCommand.ExecuteAsync(this);
-        OwnCryptoList.ItemsSource = VM.combinedCrypto;
+        //OwnCryptoList.ItemsSource = VM.Combined;
         base.OnAppearing();
-    }   
-
+    }
 }

@@ -13,6 +13,7 @@ namespace CryptocurrencyRates.Services
         List<OwnedCryptocurrency> GetOwnCrypto();
         Task<OwnedCryptocurrency> GetOwnCrypto(int id);
         Task AddOwnCrypto(OwnedCryptocurrency ownedCryptocurrency);
+        Task UpdateOwnCrypto(OwnedCryptocurrency cryptocurrency);
         Task RemoveOwnCrypto(int id);
         Task RemoveAllOwnCryptocurrency();
     }

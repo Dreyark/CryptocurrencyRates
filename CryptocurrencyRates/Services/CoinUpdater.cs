@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Text.Json.Serialization;
 using System.ComponentModel;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace CryptocurrencyRates.Services
 {
@@ -60,17 +61,26 @@ namespace CryptocurrencyRates.Services
                     //    var url = "https://assets.coincap.io/assets/icons/" + coin.symbol.ToLower() + "@2x.png";
                     //    client.DownloadFileAsync(new Uri(url), @"C:\Users\Dreyark\source\repos\Dreyark\CryptocurrencyRates\CryptocurrencyRates\Resources\CoinIcon\" + coin.symbol.ToLower() + ".png");
                     //}
+                    if(coin.maxSupply != null)
+                    {
+                        coin.maxSupply = coin.maxSupply.Remove(coin.maxSupply.Length - 10);
+                    }
                     Cryptocurrency crypto = new Cryptocurrency()
                     {
                         coinId = coin.id,
                         Name = coin.name,
                         Alias = coin.symbol,
-                        //imgSRC = FileSystem.OpenAppPackageFileAsync + coin.symbol.ToLower() + ".png",
+                        //FileSystem.OpenAppPackageFileAsync
+                        //imgSRC = ImageSource.FromFile(coin.symbol.ToLower() + "@2x.png").ToString(),
+                        //imgSRC = coin.symbol.ToLower() + "@2x.png",
+                        //imgSRC = Regex.Replace(coin.symbol.ToLower(), "[0-9]", "") + ".png",
+                        //imgSRC = Path.Combine(FileSystem.AppDataDirectory, Regex.Replace(coin.symbol.ToLower(), "[0-9]", "") + ".png"),
+                        //imgSRC = "Resources/Styles/" + Regex.Replace(coin.symbol.ToLower(), "[0-9]", "") + ".png",
                         imgSRC = "https://assets.coincap.io/assets/icons/" + coin.symbol.ToLower() + "@2x.png",
                         CurrentRateUsd = coin.priceUsd.Remove(coin.priceUsd.Length - 9),
-                        supply = coin.supply,
+                        supply = coin.supply.Remove(coin.supply.Length - 10),
                         maxSupply = coin.maxSupply,
-                        marketCapUsd = coin.marketCapUsd,
+                        marketCapUsd = coin.marketCapUsd.Remove(coin.marketCapUsd.Length -10),
                         changePercent24Hr = coin.changePercent24Hr.Remove(coin.changePercent24Hr.Length - 14)+"%"
                     };
                     cryptocurrencyService.AddCrypto(crypto);

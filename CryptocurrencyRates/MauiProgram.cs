@@ -37,6 +37,7 @@ public static class MauiProgram
         builder.Services.AddTransient<AddOwnedCryptocurrencyPage>();
         builder.Services.AddTransient<CryptocurrencyPage>();
         builder.Services.AddTransient<OwnedCryptocurrencyListPage>();
+        builder.Services.AddTransient<OwnedCryptocurrencyPage>();
         builder.Services.AddTransient<FavouriteCryptocurrencyListPage>();
 #if DEBUG
         builder.Logging.AddDebug();

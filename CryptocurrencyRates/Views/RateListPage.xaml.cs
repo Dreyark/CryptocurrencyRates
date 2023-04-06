@@ -17,11 +17,11 @@ public partial class RateListPage : ContentPage
         rateListView.ItemsSource = RateVM.Rates.OrderBy(e => e.sId);
         FirstCurrPicker.ItemsSource = RateVM.Rates.OrderBy(e => e.sId).Select(x => x.sId).ToList();
         SecCurrPicker.ItemsSource = RateVM.Rates.OrderBy(e => e.sId).Select(x => x.sId).ToList();
+        RateVM.RefreshCommand.ExecuteAsync(this);
     }
     protected override async void OnAppearing()
     {
         base.OnAppearing();
-        await RateVM.RefreshCommand.ExecuteAsync(this);
     }
 
     private void SelectedIndexChanged(object sender, EventArgs e)
@@ -41,9 +41,6 @@ public partial class RateListPage : ContentPage
             }
             value = Math.Round(inputValue * value, 6);
             SecCurr.Text = value.ToString();
-
-
-
         }
     }
 
@@ -51,4 +48,10 @@ public partial class RateListPage : ContentPage
     {
         ExchangeFrame.IsVisible = !ExchangeFrame.IsVisible;
     }
+
+    private void IsVisible(object sender, EventArgs e)
+    {
+        ExchangeFrame.IsVisible = true;
+    }
+
 }

@@ -2,6 +2,7 @@ using CryptocurrencyRates.Models;
 using CryptocurrencyRates.ViewModels;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
+using System.Globalization;
 
 namespace CryptocurrencyRates.Views;
 
@@ -31,6 +32,11 @@ public partial class CryptocurrencyPage : ContentPage
         {
             AddTofavourite.IconImageSource = "wstar.png";
         }
+        CurrentRate.Text = Convert.ToDecimal(CryptocurrencyPageVM.crypto.CurrentRateUsd, CultureInfo.InvariantCulture).ToString("G29");
+        supply.Text = Convert.ToDecimal(CryptocurrencyPageVM.crypto.supply, CultureInfo.InvariantCulture).ToString("G29");
+        maxSupply.Text = Convert.ToDecimal(CryptocurrencyPageVM.crypto.maxSupply, CultureInfo.InvariantCulture).ToString("G29");
+        marketCapUsd.Text = Convert.ToDecimal(CryptocurrencyPageVM.crypto.marketCapUsd, CultureInfo.InvariantCulture).ToString("G29");
+        changePercent.Text = CryptocurrencyPageVM.crypto.changePercent24Hr;
 
     }
     private void isFavourite_Click(Object sender, EventArgs e)
@@ -53,6 +59,12 @@ public partial class CryptocurrencyPage : ContentPage
         CryptocurrencyPageVM.ChangeChart(d1.ToString(), now.ToString(), "m1");
         CoinChart.Series = CryptocurrencyPageVM.series;
         CoinChart.XAxes = CryptocurrencyPageVM.XAxes;
+        this.d1.BackgroundColor = Color.FromHex("ff9000");
+        this.d7.BackgroundColor = Color.FromHex("abff6e00");
+        this.m1.BackgroundColor = Color.FromHex("abff6e00");
+        this.m3.BackgroundColor = Color.FromHex("abff6e00");
+        this.y1.BackgroundColor = Color.FromHex("abff6e00");
+        this.y10.BackgroundColor = Color.FromHex("abff6e00");
     }
 
     private void Button_Clicked_2(object sender, EventArgs e)
@@ -62,15 +74,27 @@ public partial class CryptocurrencyPage : ContentPage
         CryptocurrencyPageVM.ChangeChart(d7.ToString(), now.ToString(), "m30");
         CoinChart.Series = CryptocurrencyPageVM.series;
         CoinChart.XAxes = CryptocurrencyPageVM.XAxes;
+        this.d1.BackgroundColor = Color.FromHex("abff6e00");
+        this.d7.BackgroundColor = Color.FromHex("ff9000");
+        this.m1.BackgroundColor = Color.FromHex("abff6e00");
+        this.m3.BackgroundColor = Color.FromHex("abff6e00");
+        this.y1.BackgroundColor = Color.FromHex("abff6e00");
+        this.y10.BackgroundColor = Color.FromHex("abff6e00");
     }
 
     private void Button_Clicked_3(object sender, EventArgs e)
     {
         long now = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
         long m1 = DateTimeOffset.UtcNow.AddMonths(-1).ToUnixTimeMilliseconds();
-        CryptocurrencyPageVM.ChangeChart(m1.ToString(), now.ToString(), "h1");
+        CryptocurrencyPageVM.ChangeChart(m1.ToString(), now.ToString(), "h2");
         CoinChart.Series = CryptocurrencyPageVM.series;
         CoinChart.XAxes = CryptocurrencyPageVM.XAxes;
+        this.d1.BackgroundColor = Color.FromHex("abff6e00");
+        this.d7.BackgroundColor = Color.FromHex("abff6e00");
+        this.m1.BackgroundColor = Color.FromHex("ff9000");
+        this.m3.BackgroundColor = Color.FromHex("abff6e00");
+        this.y1.BackgroundColor = Color.FromHex("abff6e00");
+        this.y10.BackgroundColor = Color.FromHex("abff6e00");
     }
 
     private void Button_Clicked_4(object sender, EventArgs e)
@@ -80,6 +104,12 @@ public partial class CryptocurrencyPage : ContentPage
         CryptocurrencyPageVM.ChangeChart(m3.ToString(), now.ToString(), "h6");
         CoinChart.Series = CryptocurrencyPageVM.series;
         CoinChart.XAxes = CryptocurrencyPageVM.XAxes;
+        this.d1.BackgroundColor = Color.FromHex("abff6e00");
+        this.d7.BackgroundColor = Color.FromHex("abff6e00");
+        this.m1.BackgroundColor = Color.FromHex("abff6e00");
+        this.m3.BackgroundColor = Color.FromHex("ff9000");
+        this.y1.BackgroundColor = Color.FromHex("abff6e00");
+        this.y10.BackgroundColor = Color.FromHex("abff6e00");
     }
 
     private void Button_Clicked_5(object sender, EventArgs e)
@@ -89,6 +119,12 @@ public partial class CryptocurrencyPage : ContentPage
         CryptocurrencyPageVM.ChangeChart(y1.ToString(), now.ToString(), "d1");
         CoinChart.Series = CryptocurrencyPageVM.series;
         CoinChart.XAxes = CryptocurrencyPageVM.XAxes;
+        this.d1.BackgroundColor = Color.FromHex("abff6e00");
+        this.d7.BackgroundColor = Color.FromHex("abff6e00");
+        this.m1.BackgroundColor = Color.FromHex("abff6e00");
+        this.m3.BackgroundColor = Color.FromHex("abff6e00");
+        this.y1.BackgroundColor = Color.FromHex("ff9000");
+        this.y10.BackgroundColor = Color.FromHex("abff6e00");
     }
 
     private void Button_Clicked_6(object sender, EventArgs e)
@@ -98,5 +134,11 @@ public partial class CryptocurrencyPage : ContentPage
         CryptocurrencyPageVM.ChangeChart(y10.ToString(), now.ToString(), "d1");
         CoinChart.Series = CryptocurrencyPageVM.series;
         CoinChart.XAxes = CryptocurrencyPageVM.XAxes;
+        this.d1.BackgroundColor = Color.FromHex("abff6e00");
+        this.d7.BackgroundColor = Color.FromHex("abff6e00");
+        this.m1.BackgroundColor = Color.FromHex("abff6e00");
+        this.m3.BackgroundColor = Color.FromHex("abff6e00");
+        this.y1.BackgroundColor = Color.FromHex("abff6e00");
+        this.y10.BackgroundColor = Color.FromHex("ff9000");
     }
 }

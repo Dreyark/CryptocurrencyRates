@@ -12,7 +12,7 @@
             <toolkit:SelectedItemEventArgsConverter x:Key="SelectedItemEventArgsConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
-    <Grid Padding="2,-5,2,-5">
+    <Grid Padding="3,0,3,0">
         <ListView x:Name="FavouriteListView" SelectedItem="{Binding selectedItem}">
             <ListView.Behaviors>
                 <toolkit:EventToCommandBehavior
