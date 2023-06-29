@@ -18,6 +18,7 @@ public partial class CryptocurrencyPage : ContentPage
         CryptocurrencyPageVM.RefreshCommand.ExecuteAsync(this);
         CoinChart.Series = CryptocurrencyPageVM.series;
         CoinChart.XAxes = CryptocurrencyPageVM.XAxes;
+        CoinChart.YAxes = CryptocurrencyPageVM.YAxes;
         Title = CryptocurrencyPageVM.crypto.Name;
     }
 
@@ -32,11 +33,11 @@ public partial class CryptocurrencyPage : ContentPage
         {
             AddTofavourite.IconImageSource = "wstar.png";
         }
-        CurrentRate.Text = Convert.ToDecimal(CryptocurrencyPageVM.crypto.CurrentRateUsd, CultureInfo.InvariantCulture).ToString("G29");
-        supply.Text = Convert.ToDecimal(CryptocurrencyPageVM.crypto.supply, CultureInfo.InvariantCulture).ToString("G29");
-        maxSupply.Text = Convert.ToDecimal(CryptocurrencyPageVM.crypto.maxSupply, CultureInfo.InvariantCulture).ToString("G29");
-        marketCapUsd.Text = Convert.ToDecimal(CryptocurrencyPageVM.crypto.marketCapUsd, CultureInfo.InvariantCulture).ToString("G29");
-        changePercent.Text = CryptocurrencyPageVM.crypto.changePercent24Hr;
+        CurrentRate.Text = "Current Rate: "+Convert.ToDecimal(CryptocurrencyPageVM.crypto.CurrentRateUsd, CultureInfo.InvariantCulture).ToString("G29");
+        supply.Text = "Supply: "+Convert.ToDecimal(CryptocurrencyPageVM.crypto.supply, CultureInfo.InvariantCulture).ToString("G29");
+        maxSupply.Text = " Max Supply: " + Convert.ToDecimal(CryptocurrencyPageVM.crypto.maxSupply, CultureInfo.InvariantCulture).ToString("G29");
+        marketCapUsd.Text = "Market Cap: " + Convert.ToDecimal(CryptocurrencyPageVM.crypto.marketCapUsd, CultureInfo.InvariantCulture).ToString("G29");
+        changePercent.Text = "Change: " + CryptocurrencyPageVM.crypto.changePercent24Hr;
 
     }
     private void isFavourite_Click(Object sender, EventArgs e)

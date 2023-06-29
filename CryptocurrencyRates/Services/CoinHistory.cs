@@ -40,14 +40,20 @@ namespace CryptocurrencyRates.Services
                 var valueSet = JsonConvert.DeserializeObject<CoinHistoryRoot>(jsonString);
                 coinHistoryRoot = valueSet;
             }
+
             //priceUSDList = new ObservableCollection<decimal>();
             //timeList = new ObservableCollection<DateTime>();
             dateTimePoint = new ObservableCollection<DateTimePoint>();
             foreach (CoinDataHistory x in coinHistoryRoot.data)
             {
+                int ToRemove = 11;
+                if (coin == "shiba-inu")
+                {
+                    ToRemove = 6;
+                }
                 //priceUSDList.Add(Convert.ToDecimal(x.priceUsd, CultureInfo.InvariantCulture));
                 //timeList.Add(x.date);
-                dateTimePoint.Add(new DateTimePoint() { DateTime = x.date, Value = Convert.ToDouble(x.priceUsd.Remove(x.priceUsd.Length-6), CultureInfo.InvariantCulture) });
+                dateTimePoint.Add(new DateTimePoint() { DateTime = x.date, Value = Convert.ToDouble(x.priceUsd.Remove(x.priceUsd.Length- ToRemove), CultureInfo.InvariantCulture) });
             }
         }
     }

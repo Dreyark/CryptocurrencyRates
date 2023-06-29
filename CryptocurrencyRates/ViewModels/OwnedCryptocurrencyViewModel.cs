@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CryptocurrencyRates.Views;
 using System.Collections.ObjectModel;
+using System.Globalization;
 
 namespace CryptocurrencyRates.ViewModels
 {
@@ -44,11 +45,13 @@ namespace CryptocurrencyRates.ViewModels
                     CoinId = ownCrypto.CoinId,
                     Amount = ownCrypto.Amount,
                     Description = ownCrypto.Description,
+                    StartPrice = ownCrypto.StartPrice,
                     Alias = c.Alias,
                     changePercent24Hr = c.changePercent24Hr,
                     CurrentRateUsd = c.CurrentRateUsd,
                     Name = c.Name,
                     imgSRC = c.imgSRC,
+                    Summary = Convert.ToString(Math.Round(ownCrypto.Amount * Convert.ToDouble(c.CurrentRateUsd, CultureInfo.InvariantCulture),4)),
                 };
                 Combined.Add(comb);
 

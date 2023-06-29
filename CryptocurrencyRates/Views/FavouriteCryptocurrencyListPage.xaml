@@ -6,14 +6,14 @@
              xmlns:model="clr-namespace:CryptocurrencyRates.Models"
              xmlns:viewmodel="clr-namespace:CryptocurrencyRates.ViewModels"
              x:DataType="viewmodel:CryptocurrencyViewModel"
-             Title="Favourites">
+             Title="Favorites">
     <ContentPage.Resources>
         <ResourceDictionary>
             <toolkit:SelectedItemEventArgsConverter x:Key="SelectedItemEventArgsConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <Grid Padding="3,0,3,0">
-        <ListView x:Name="FavouriteListView" SelectedItem="{Binding selectedItem}">
+        <ListView x:Name="FavouriteListView" SelectedItem="{Binding selectedItem}" SeparatorVisibility="None">
             <ListView.Behaviors>
                 <toolkit:EventToCommandBehavior
                 EventName="ItemTapped"
@@ -52,9 +52,9 @@
                                         <Label
                                     Text="{Binding Name}" Margin="5,5,5,5"  VerticalOptions="CenterAndExpand" HorizontalOptions="Start" Grid.Column="3"/>
                                         <Label
-                                    Text="{Binding CurrentRateUsd}" Margin="5,5,5,5"  VerticalOptions="CenterAndExpand" HorizontalOptions="Start" Grid.Column="4" LineBreakMode="NoWrap"/>
+                                    Text="{Binding CurrentRateUsd}" Margin="-25,5,5,5"  VerticalOptions="CenterAndExpand" HorizontalOptions="Start" Grid.Column="4" LineBreakMode="NoWrap"/>
                                         <Label x:Name="Percent24"
-                                    Text="{Binding changePercent24Hr}" Margin="5,5,5,5"  VerticalOptions="CenterAndExpand" HorizontalOptions="Start" Grid.Column="5" LineBreakMode="NoWrap"/>
+                                    Text="{Binding changePercent24Hr}" Margin="60,5,5,5"  VerticalOptions="CenterAndExpand" HorizontalOptions="Center" Grid.Column="4" LineBreakMode="NoWrap"/>
                                     </Grid>
                                 </StackLayout>
                             </Frame>

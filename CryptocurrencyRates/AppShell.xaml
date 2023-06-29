@@ -48,7 +48,7 @@
     <FlyoutItem Title="Favorites" Icon="wstar.png">
         <ShellContent ContentTemplate="{DataTemplate local:FavouriteCryptocurrencyListPage}"/>
     </FlyoutItem>
-    <FlyoutItem Title="My Wallet" Icon="wwallet.png">
+    <FlyoutItem Title="My Crypto" Icon="wwallet.png">
         <ShellContent
             ContentTemplate="{DataTemplate local:OwnedCryptocurrencyListPage}"
             Route="MyCrypto"/>

@@ -27,7 +27,7 @@
             <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
-        <lvc:CartesianChart Grid.Row="0" Grid.RowSpan="4" Grid.Column="0" Grid.ColumnSpan="6" TooltipTextSize="40"
+        <lvc:CartesianChart Grid.Row="0" Grid.RowSpan="4" Grid.Column="0" Grid.ColumnSpan="6" TooltipTextSize="40" Margin="0,-5,-35,0"
             x:Name="CoinChart" />
         <Button Margin="5,0,0,30" x:Name="d1" VerticalOptions="Start" Text="1D" Clicked="Button_Clicked_1" Grid.Column="0" Grid.Row="4" WidthRequest="55" HeightRequest="35" BackgroundColor="#abff6e00"    TextColor="White" FontAttributes="Bold"/>
         <Button Margin="0,0,0,30" x:Name="d7" VerticalOptions="Start" Text="7D" Clicked="Button_Clicked_2" Grid.Column="1" Grid.Row="4" WidthRequest="55" HeightRequest="35" BackgroundColor="#abff6e00"    TextColor="White" FontAttributes="Bold"/>
@@ -35,11 +35,11 @@
         <Button Margin="0,0,0,30" x:Name="m3" VerticalOptions="Start" Text="3M" Clicked="Button_Clicked_4" Grid.Column="3" Grid.Row="4" WidthRequest="55" HeightRequest="35" BackgroundColor="#abff6e00"    TextColor="White" FontAttributes="Bold"/>
         <Button Margin="0,0,0,30" x:Name="y1" VerticalOptions="Start" Text="1Y" Clicked="Button_Clicked_5" Grid.Column="4" Grid.Row="4" WidthRequest="55" HeightRequest="35" BackgroundColor="#abff6e00"    TextColor="White" FontAttributes="Bold"/>
         <Button Margin="0,0,5,30" x:Name="y10" VerticalOptions="Start" Text="10Y" Clicked="Button_Clicked_6" Grid.Column="5" Grid.Row="4" WidthRequest="55" HeightRequest="35" BackgroundColor="#abff6e00"    TextColor="White" FontAttributes="Bold"/>
-        <Label x:Name="CurrentRate" Grid.Row="5" Grid.Column="1" Margin="10,0,0,0" VerticalOptions="Center" HorizontalOptions="Start"/>
-        <Label x:Name="changePercent" Grid.Row="5" Grid.Column="4" Margin="0,0,0,0" VerticalOptions="Center" HorizontalOptions="Center"/>
-        <Label x:Name="supply" Grid.Row="6" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start"/>
-        <Label x:Name="maxSupply" Grid.Row="6" Grid.Column="3" Margin="0,0,0,0" VerticalOptions="Center" HorizontalOptions="Start"/>
-        <Label x:Name="marketCapUsd" Grid.Row="6" Grid.Column="5" Margin="0,0,0,0" VerticalOptions="Center" HorizontalOptions="Start"/>
+        <Label x:Name="CurrentRate" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" Margin="15,-20,0,0" VerticalOptions="Start" HorizontalOptions="Start"/>
+        <Label x:Name="changePercent" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2"  Margin="10,10,0,0" VerticalOptions="Start" HorizontalOptions="Start"/>
+        <Label x:Name="supply" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4" Margin="17,15,0,0" VerticalOptions="Center" HorizontalOptions="Start"/>
+        <Label x:Name="maxSupply" Grid.Row="5" Grid.Column="3"  Grid.ColumnSpan="4" Margin="15,15,0,0" VerticalOptions="Center" HorizontalOptions="Start"/>
+        <Label x:Name="marketCapUsd" Grid.Row="5" Grid.RowSpan="2" Grid.Column="3"  Grid.ColumnSpan="4" Margin="15,-20,0,0" VerticalOptions="Start" HorizontalOptions="Start"/>
 
     </Grid>
 </ContentPage>

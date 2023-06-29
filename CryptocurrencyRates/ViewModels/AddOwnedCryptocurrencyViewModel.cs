@@ -43,6 +43,14 @@ namespace CryptocurrencyRates.ViewModels
             OwnedCryptocurrency ownCrypto = new OwnedCryptocurrency();
             ownCrypto.Description = _CombinedCrypto.Description;
             ownCrypto.Amount = _CombinedCrypto.Amount;
+            if(_CombinedCrypto.StartPrice == null )
+            {
+                ownCrypto.StartPrice = _CombinedCrypto.CurrentRateUsd;
+            }
+            else
+            {
+                ownCrypto.StartPrice = _CombinedCrypto.StartPrice;
+            }
             ownCrypto.CoinId = _CombinedCrypto.CoinId+1;
             if(_CombinedCrypto.Id > 0) {
                 ownCrypto.Id = _CombinedCrypto.Id;

@@ -61,9 +61,14 @@ namespace CryptocurrencyRates.Services
                     //    var url = "https://assets.coincap.io/assets/icons/" + coin.symbol.ToLower() + "@2x.png";
                     //    client.DownloadFileAsync(new Uri(url), @"C:\Users\Dreyark\source\repos\Dreyark\CryptocurrencyRates\CryptocurrencyRates\Resources\CoinIcon\" + coin.symbol.ToLower() + ".png");
                     //}
-                    if(coin.maxSupply != null)
+                    int ToRemove = 12;
+                    if (coin.maxSupply != null)
                     {
-                        coin.maxSupply = coin.maxSupply.Remove(coin.maxSupply.Length - 10);
+                        coin.maxSupply = coin.maxSupply.Remove(coin.maxSupply.Length - ToRemove);
+                    }
+                    if( coin.symbol == "SHIB")
+                    {
+                        ToRemove = 8;
                     }
                     Cryptocurrency crypto = new Cryptocurrency()
                     {
@@ -77,10 +82,10 @@ namespace CryptocurrencyRates.Services
                         //imgSRC = Path.Combine(FileSystem.AppDataDirectory, Regex.Replace(coin.symbol.ToLower(), "[0-9]", "") + ".png"),
                         //imgSRC = "Resources/Styles/" + Regex.Replace(coin.symbol.ToLower(), "[0-9]", "") + ".png",
                         imgSRC = "https://assets.coincap.io/assets/icons/" + coin.symbol.ToLower() + "@2x.png",
-                        CurrentRateUsd = coin.priceUsd.Remove(coin.priceUsd.Length - 9),
-                        supply = coin.supply.Remove(coin.supply.Length - 10),
+                        CurrentRateUsd = coin.priceUsd.Remove(coin.priceUsd.Length - ToRemove),
+                        supply = coin.supply.Remove(coin.supply.Length - ToRemove),
                         maxSupply = coin.maxSupply,
-                        marketCapUsd = coin.marketCapUsd.Remove(coin.marketCapUsd.Length -10),
+                        marketCapUsd = coin.marketCapUsd.Remove(coin.marketCapUsd.Length - ToRemove),
                         changePercent24Hr = coin.changePercent24Hr.Remove(coin.changePercent24Hr.Length - 14)+"%"
                     };
                     cryptocurrencyService.AddCrypto(crypto);

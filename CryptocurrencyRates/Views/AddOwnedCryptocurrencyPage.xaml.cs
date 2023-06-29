@@ -21,4 +21,16 @@ public partial class AddOwnedCryptocurrencyPage : ContentPage
         //AmountEntry.Text = VM.Amount.ToString();
         //DescrEntry.Text = VM.Description;
     }
+
+    private void UseCurrent_CheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+        if(UseCurrent.IsChecked == true)
+        {
+            startPrice.IsVisible = false;
+        }
+        else
+        {
+            startPrice.IsVisible = true;
+        }
+    }
 }

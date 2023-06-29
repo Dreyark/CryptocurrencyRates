@@ -11,17 +11,21 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="10" />
                 <RowDefinition Height="80" />
-                <RowDefinition Height="20" />
+                <RowDefinition Height="30" />
                 <RowDefinition Height="60" />
                 <RowDefinition Height="50" />
-                <RowDefinition Height="100" />
-                <RowDefinition Height="10" />
-                <RowDefinition Height="200" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="150" />
+                <RowDefinition Height="140" />
             </Grid.RowDefinitions>
-            <Picker x:Name="CoinPicker" SelectedIndex="{Binding CombinedCrypto.CoinId}" Title="Select Cryptocurrency" Grid.Row="1" WidthRequest="320" HeightRequest="80" BackgroundColor="#bb222222" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
-            <Entry Keyboard="Numeric" Text="{Binding CombinedCrypto.Amount}" x:Name="AmountEntry" Grid.Row="3" Placeholder="Amount" BackgroundColor="#bb222222" VerticalOptions="Fill" HorizontalOptions="Fill"/>
-            <Editor  Text="{Binding CombinedCrypto.Description}" x:Name="DescrEntry" Grid.Row="5" Placeholder="Description" BackgroundColor="#bb222222"  VerticalOptions="Fill" HorizontalOptions="Fill" VerticalTextAlignment="Start" HorizontalTextAlignment="Start" FontAutoScalingEnabled="True" />
-            <Button Text="Save" Command="{Binding SaveCommand}" Grid.Row="7" VerticalOptions="Center" HorizontalOptions="Fill" HeightRequest="100" BackgroundColor="#ffff6e00" TextColor="White" FontSize="30" FontAttributes="Bold"/>
+            <Picker x:Name="CoinPicker" SelectedIndex="{Binding CombinedCrypto.CoinId}" Title="Select Cryptocurrency" Grid.Row="1" WidthRequest="320" HeightRequest="80" BackgroundColor="#ff000000" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+            <Entry Keyboard="Numeric" Text="{Binding CombinedCrypto.Amount}" x:Name="AmountEntry" Grid.Row="6" Placeholder="Quantity" BackgroundColor="#cc111111" VerticalOptions="Fill" HorizontalOptions="Fill"/>
+            <Label Text="Use current price" Grid.Row="3" Margin="50,13,0,0"/>
+            <CheckBox x:Name="UseCurrent" IsChecked="False" CheckedChanged="UseCurrent_CheckedChanged" Grid.Row="3" Margin="-340,-15,0,0"/>
+            <Entry x:Name="startPrice" Keyboard="Numeric" Text="{Binding CombinedCrypto.StartPrice}" Grid.Row="4" Placeholder="Price per coin" BackgroundColor="#cc111111" VerticalOptions="Fill" HorizontalOptions="Fill"/>
+            <Editor  Text="{Binding CombinedCrypto.Description}" x:Name="DescrEntry" Margin="0,30,0,0" Grid.Row="7" Placeholder="Description" BackgroundColor="#cc111111"  VerticalOptions="Fill" HorizontalOptions="Fill" VerticalTextAlignment="Start" HorizontalTextAlignment="Start" FontAutoScalingEnabled="True" />
+            <Button Text="Save" Command="{Binding SaveCommand}" Grid.Row="8" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="200" HeightRequest="80" BackgroundColor="#77ff6e00" TextColor="White" FontSize="30" FontAttributes="Bold"/>
         </Grid>
     </VerticalStackLayout>
 </ContentPage> 

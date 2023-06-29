@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using LiveChartsCore.Defaults;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SkiaSharp;
+using LiveChartsCore.Kernel.Sketches;
 
 namespace CryptocurrencyRates.ViewModels
 {
@@ -24,6 +25,7 @@ namespace CryptocurrencyRates.ViewModels
         public Cryptocurrency crypto { get; set; }
         public ISeries[] series { get; set; }
         public Axis[] XAxes { get; set; }
+        public Axis[] YAxes { get; set; }
 
         //public ObservableCollection<Decimal> priceUSDList;
         //public ObservableCollection<DateTime> timeList;
@@ -51,6 +53,18 @@ namespace CryptocurrencyRates.ViewModels
             //string EndDateTime = "1800000000000";
             ////string StartDateTime = " 	31556926";
             //string EndDateTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString();
+            string lab = "";
+            string lab2 = "";
+            if (interval == "m1" || interval == "m30")
+            {
+                lab2 = "dd.MM.yyyy HH:mm";
+                lab = "dd.MM.yyyy HH:mm";
+            }
+            else
+            {
+                lab2 = "dd.MM.yyyy";
+                lab = "dd.MM.yyyy";
+            }
             CoinHistory coinHistory = new CoinHistory(crypto.coinId, interval, StartDateTime, EndDateTime);
             //priceUSDList = coinHistory.priceUSDList;
             //timeList = coinHistory.timeList;
@@ -59,26 +73,36 @@ namespace CryptocurrencyRates.ViewModels
                 new LineSeries<DateTimePoint>
                 {
                     TooltipLabelFormatter = (chartPoint) =>
-                    $"{chartPoint.PrimaryValue}$  {new DateTime((long) chartPoint.SecondaryValue):dd MMMM yyyy hh:mm}",
+                    $"{chartPoint.PrimaryValue}$  {new DateTime((long) chartPoint.SecondaryValue).ToString(lab2)}",
                     Values = coinHistory.dateTimePoint,
                     Stroke = new SolidColorPaint(SKColors.DarkOrange) { StrokeThickness = 1 },
                     Fill = new SolidColorPaint(SKColors.Orange.WithAlpha(40)),
                     GeometryFill = null,
                     GeometryStroke = null,
-                    
 
                     }
                 };
-            XAxes = new Axis[]
+
+           
+        XAxes = new Axis[]
             {
-                new Axis
+            new Axis
                 {
-                    Labeler = value => new DateTime((long) value).ToString("dd.mm.yyyy hh:mm"),
-                    LabelsRotation = 60,
+                    Labeler = value => new DateTime((long) value).ToString(lab),
+                    LabelsRotation = 45,
                     TextSize = 30,
                     UnitWidth = TimeSpan.FromDays(1).Ticks
                 }
             };
+
+            YAxes = new Axis[]
+    {
+            new Axis
+                {
+                    TextSize = 30,
+                }
+    };
+
         }
     }
 }
